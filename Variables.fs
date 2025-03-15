@@ -17,6 +17,7 @@ let ctags = None
 let synth = new SpeechSynthesizer()
 let ones =
     Choice [
+        Word ("zero",  "0", None)
         Word ("one",   "1", None)
         Word ("two",   "2", None)
         Word ("three", "3", None)
