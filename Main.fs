@@ -79,8 +79,17 @@ let main argv =
 
                     // Announce recognized input
                     promptRecognized(res) 
+                    if wordValue.StartsWith("§")  then promptKeystroke(wordValue)  // Because non meta-actions are parsed before printing
                     if not settings.DontSayAction then speak res.Text
                     
+                    // Check for meta-action
+                    if wordValue.StartsWith("§") then
+                        match wordValue.[1..] with
+                        | _ -> 
+                            promptInaction("not implemented")
+                            promptExtra("Unrecognized command: "+wordValue) 
+                            promptCloseMuted()
+
                     else  // Not a meta-action
                         // Process resulting keystrokes 
                         let useInsertMode = !mode = Insert || (res.Semantics.Value <> null && res.Semantics.Value :?> string = "search")
