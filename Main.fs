@@ -106,6 +106,14 @@ let main argv =
                         | "chain:ctrl"                 -> queuedPrepend <- "\CTRL"; promptExtra("Queued CTRL for the next keystroke")
                         | "chain:shift"                -> queuedPrepend <- "\SHIFT";promptExtra("Queued SHIFT for the next keystroke")
                         | "chain:alt"                  -> queuedPrepend <- "\ALT";  promptExtra("Queued ALT for the next keystroke")
+                        | "print:normal-mode"          -> printEntireGrammarList(normalMode)
+                        | "print:insert-mode"          -> printEntireGrammarList(insertMode)
+                        | "print:windows-mode"         -> printEntireGrammarList(windowsMode)
+                        | "print:visual-mode"          -> printEntireGrammarList(visualMode)
+                        | "print:universal"            -> printEntireGrammarList([universalCommands])
+                        | "print:help"                 ->
+                            promptExtra("Say \"printout {insert/windows/visual/universal} mode\" to see all available actions.")
+                            speak "To see all available actions, say \"printout, mode-name, mode\", with one of the modes insert, normal, windows, visual or universal. E.g. \"printout normal mode\"."
                         | _ -> 
                             promptInaction("not implemented")
                             promptExtra("Unrecognized command: "+wordValue) 
