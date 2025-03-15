@@ -512,6 +512,22 @@ let universalCommands =
         Word ("help-me",                     "§print:help",            None)
         Word ("crumb",                       "§repeatkeystroke",            None) // Repeats last action
         Word ("crum",                        "§repeatkeystroke",            None) // Repeats last action
+        Word ("clear-chain", "§chain:clear", None)
+        Sequence [
+            Word ("chain", "", Some "insert")
+            Choice [
+                Word("control",     "§chain:ctrl", Some "insert")
+                Word("shift",       "§chain:shift", Some "insert")
+                Word("alternative", "§chain:alt", Some "insert")
+                Choice [
+                    Word ("nothing","§chain:clear", None)
+                    Word ("clear",  "§chain:clear", None)
+                ]
+            ]
+            //Optional (Word ("and", "", None))
+            //insertCommands // Note: This would make being aware of modes unnecessary for this cmd, parser would need to do as normal except prepend if .Startswith("chain-shf/ctrl/alt"), instead of the queueing currently used.
+        ]
+
         Word("begin-transcribing",          "§transcribe:start",          None)
         Word("begin-whisper",               "§transcribe:start",          None)
         Word("stop-transcribing",           "§transcribe:stop",          None)
