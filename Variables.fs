@@ -720,6 +720,8 @@ let insertCommands =
         Word ("space",             " ",       None)
         Word ("backspace",         "\{bs\}",  None)
         Word ("backspace-word",    "\^w",     None)
+        Word ("fish",              "\{bs\}",  None)
+        Word ("fishing",           "\^w",     None)
         Word ("tab",               "\{tab\}", None)
         //Word ("enter",             "\{enter\}", None)
     ]
