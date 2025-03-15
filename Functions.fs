@@ -50,9 +50,15 @@ let recoToKeys (reco : RecognitionResult) =
         | None -> keys + word.Text
     if reco = null then "" else Seq.fold concat "" reco.Words
 
-let fixKeys (keys : string) = // TODO: this is silly!
-    keys.Replace("{", "<left-brace>") // re-replaced with escaped brace below
-        .Replace("}", "<right-brace>") // re-replaced with escaped brace below
+
+// - Replace the special keys <> with \{ and \}, so they don't need replacements here.
+let handleSpecialChars (keys : string) = 
+    keys.Replace("\{",      "LBR") // Specially interpreted strings           
+        .Replace("\}",      "RBR") // Rationale: Making every character literal unless prepended with backslash, for predictability in UI and code, due to Windows interpreting many characters automatically.
+        // Replacing the remaining braces with a placeholder, before inserting windows-interpreted braces
+        .Replace("{", "<left-brace>")  
+        .Replace("}", "<right-brace>") 
+        // Ensuring the following aren't interpreted specially by Windows 
         .Replace("(", "{(}")
         .Replace(")", "{)}")
         .Replace("~", "{~}")
@@ -60,27 +66,12 @@ let fixKeys (keys : string) = // TODO: this is silly!
         .Replace("^", "{^}")
         .Replace("%", "{%}")
         .Replace("!", "{!}")
-        .Replace("<esc>", "{esc}")
-        .Replace("<space>", " ")
-        .Replace("<C-b>", "^b")
-        .Replace("<C-d>", "^d")
-        .Replace("<C-e>", "^e")
-        .Replace("<C-f>", "^f")
-        .Replace("<C-g>", "^g")
-        .Replace("<C-h>", "{bs}")
-        .Replace("<C-i>", "^i")
-        .Replace("<C-n>", "^n")
-        .Replace("<C-o>", "^o")
-        .Replace("<C-p>", "^p")
-        .Replace("<C-r>", "^r")
-        .Replace("<C-u>", "^u")
-        .Replace("<C-v>", "^v")
-        .Replace("<C-y>", "^y")
-        .Replace("<C-o>u", "(^o)u")
-        .Replace("<tab>", "{tab}")
-        .Replace("<enter>", "{enter}")
+        // Re-inserting regular braces
         .Replace("<left-brace>", "{{}")
         .Replace("<right-brace>", "{}}")
+        // Replacing placeholders special characters with their windows equivalent
+        .Replace("LBR", "{") // Used for writing windows dotnet key codes directly, the string it uses cant contain anything replaced by the prior replacements.
+        .Replace("RBR", "}")
 
 let insertKeys (keys : string) =
     if keys = "escape" then "<esc>" // HACK
