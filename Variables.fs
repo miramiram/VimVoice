@@ -499,6 +499,12 @@ let universalCommands =
         Word ("volume-peak",                 "§vol:100",            None)
         Word ("speak-faster",                "§speech:faster",            None)
         Word ("speak-slower",                "§speech:slower",            None)
+        Word ("printout-normal-mode",        "§print:normal-mode",                  None)
+        Word ("printout-visual-mode",        "§print:visual-mode",                  None)
+        Word ("printout-insert-mode",        "§print:insert-mode",                  None)
+        Word ("printout-windows-mode",       "§print:windows-mode",                 None)
+        Word ("printout-universal-commands", "§print:universal-commands",            None)
+        Word ("help-me",                     "§print:help",            None)
 
     ]
 
