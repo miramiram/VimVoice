@@ -490,6 +490,8 @@ let normalMode =
                 Word ("scroll-down",              "\^e",  None)
                 Word ("page-down",                "\^f",  None)
                 Word ("page-up",                  "\^b",  None) 
+                Word ("pack-down",                "\^f",  None)
+                Word ("pack-up",                  "\^b",  None)
                 Word ("half-page-down",           "\^d",  None)
                 Word ("half-page-up",             "\^u",  None)
                 Word ("indent-line",              ">>",   None)
