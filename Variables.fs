@@ -710,6 +710,8 @@ let insertCommands =
         Word ("complete",          "\^n",     None)
         Word ("complete-next",     "\^n",     None)
         Word ("complete-previous", "\^p",     None)
+        Word ("next-completion",     "\^n",     None)
+        Word ("previous-completion", "\^p",     None)
         Word ("space",             " ",       None)
         Word ("backspace",         "\{bs\}",  None)
         Word ("tab",               "\{tab\}", None)
