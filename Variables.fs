@@ -266,8 +266,22 @@ let jump =
             Word ("last-insert",             "^",  None)
             Word ("last-change",             ".",  None)]]
 
-let line = Sequence [count; Choice [Word ("line", "G", None); Word ("percent", "%", None)]]
-let lineNum = Sequence [Word ("line-number", ":", Some "command"); count]
+let line = 
+    Sequence [
+        count; 
+        Choice [
+            Word ("lines",   "G", None)
+            Word ("percent", "%", None)
+        ]
+    ]
+let lineNum = 
+    Sequence [
+        Choice [
+           Word ("line-number", ":", Some "command")
+           Word ("line",        ":", Some "command")
+        ]
+        count
+    ]
 
 let command =
     Choice [
