@@ -702,6 +702,19 @@ let commandInsertionModeCommands =
         //    Word ("under-cursor" , "", None)
         //]
     ]
+
+let insertCommands =
+    Choice [
+        escape
+        Word ("undo",              "\^ou",    None)
+        Word ("complete",          "\^n",     None)
+        Word ("complete-next",     "\^n",     None)
+        Word ("complete-previous", "\^p",     None)
+        Word ("space",             " ",       None)
+        Word ("backspace",         "\{bs\}",  None)
+        Word ("tab",               "\{tab\}", None)
+        //Word ("enter",             "\{enter\}", None)
+    ]
 let programmingWords = Choice [
     Choice [ //Language: Universal
         Word ("function",  "function",  None)
@@ -722,17 +735,6 @@ let programmingWords = Choice [
         ]
     ]
 let insertMode =
-    let insertCommands =
-        Choice [
-            Word ("undo", "(^o)u",              None)
-            Word ("complete", "<C-n>",          None)
-            Word ("complete-next", "<C-n>",     None)
-            Word ("complete-previous", "<C-p>", None)
-            Word ("space", "<space>",           None)
-            Word ("backspace", "<backspace>",   None)
-            Word ("tab", "<tab>",               None)
-            Word ("enter", "<enter>",           None)
-            Word ("return", "<enter>",          None)]
     [Dictation; programmingWords; insertCommands; escape]
         
 
