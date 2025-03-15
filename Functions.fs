@@ -220,17 +220,17 @@ let rec printEntireGrammarList (grammarList: GrammarAST<'a> list) =
 
 
 
-    let insertKeys (keys : string) =  
-        if   keys.StartsWith "search " then "/" + keys.Substring 7
-        elif keys.StartsWith "search-reversed " then "?" + keys.Substring 16
-        else
-            // Check if the string exists in any of the characters, and return the character representation if so.
-            match findMatchingWord insertCommands keys with
+let insertKeys (keys : string) =  
+    if   keys.StartsWith "search " then "/" + keys.Substring 7
+    elif keys.StartsWith "search-reversed " then "?" + keys.Substring 16
+    else
+        // Check if the string exists in any of the characters, and return the character representation if so.
+        match findMatchingWord insertCommands keys with
+        | Match (Word (word, conversion, _)) -> conversion
+        | NoMatch  ->
+            match findMatchingWord ones keys with
             | Match (Word (word, conversion, _)) -> conversion
-            | NoMatch  ->
-                match findMatchingWord ones keys with
-                | Match (Word (word, conversion, _)) -> conversion
-                | NoMatch  -> keys
+            | NoMatch  -> keys
 
 
 let closeTranscriber () =
