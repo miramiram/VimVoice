@@ -452,6 +452,7 @@ let universalCommands =
         Word ("summon-wizard",               "§wizard:summon_with_scribe",            Some "windows")
         Word ("consult-assistant",           "§wizard:summon_with_scribe",            Some "windows")
         Word ("sneakily-consult-assistant",   "§wizard:summon_scribelessly",          None)
+        Word ("cancel",                      "\CTRLc",      None)
         Word ("keyboard-escape",             "\{esc\}",     None)  // Used to hit esc without entering normal mode, and can be inserted anywhere
         Word ("keep-escape",                 "\{esc\}",     None)
         Word ("use-windows-mode",            "",            Some "windows")
