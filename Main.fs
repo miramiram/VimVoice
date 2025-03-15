@@ -64,6 +64,15 @@ let main argv =
 
                 let wordValue = recoToKeys res
 
+                if voiceRecognitionPaused then 
+                    match wordValue with
+                    | "§voicerecog:start" ->
+                        voiceRecognitionPaused <- false
+                        promptRecognized(res); promptKeystroke(wordValue); promptMode("started listening"); promptClose()
+                        speak "Resuming voice recognition."
+                    | _ ->
+                        promptInaction("ignoring"); promptExtra("Say \"begin-hearing\" to unpause VimVoice."); promptCloseMuted()
+                    
                         // Process resulting keystrokes 
                         let useInsertMode = !mode = Insert || (res.Semantics.Value <> null && res.Semantics.Value :?> string = "search")
                         let insertOrReco  = if useInsertMode then insertKeys res.Text else wordValue  //recoToKeys res 
