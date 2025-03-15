@@ -721,6 +721,7 @@ let insertCommands =
         Word ("ace",               " ",       None)
         Word ("backspace",         "\{bs\}",  None)
         Word ("backspace-word",    "\^w",     None)
+        Word ("normal-command",    "\CTRLo",  None)  // ^o makes vim interpret your next input as a normal-mode command, without leaving insert mode. Not switching to normal mode as there's currently no way to switch back afterwards automatically.
         Word ("fish",              "\{bs\}",  None)
         Word ("fishing",           "\^w",     None)
         Word ("tab",               "\{tab\}", None)
