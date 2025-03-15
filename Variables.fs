@@ -505,6 +505,8 @@ let universalCommands =
         Word ("printout-windows-mode",       "§print:windows-mode",                 None)
         Word ("printout-universal-commands", "§print:universal-commands",            None)
         Word ("help-me",                     "§print:help",            None)
+        Word ("crumb",                       "§repeatkeystroke",            None) // Repeats last action
+        Word ("crum",                        "§repeatkeystroke",            None) // Repeats last action
 
     ]
 
