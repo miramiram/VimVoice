@@ -67,46 +67,35 @@ let main argv =
             if res.Text.StartsWith("yank ") then speak "yanked" // TODO: can't do as prompt because of overloaded value
             elif res.Text.StartsWith("copy ") then speak "copied" // TODO: can't do as prompt because of overloaded value
             match if res.Semantics.Value = null then None else Some (res.Semantics.Value :?> string) with
-            | Some "normal" ->
-                if not (!mode = Normal) then // visual commands
-                    switchGrammar normalMode
-                    mode := Normal
-                    Console.ForegroundColor <- ConsoleColor.Red
-                    printfn "  NORMAL"
-                    speak "Normal mode"
-            | Some "insert" ->
-                switchGrammar insertMode
-                if ctagsGrammar.IsSome then reco.LoadGrammar(ctagsGrammar.Value)
-                mode := Insert
-                Console.ForegroundColor <- ConsoleColor.Red
-                printfn "  INSERT"
-                speak "Insert mode"
-            | Some "visual" ->
-                switchGrammar visualMode
-                mode := VisualMode
-                Console.ForegroundColor <- ConsoleColor.Red
-                printfn "  VISUAL"
-                speak "Visual mode"
-            | Some "replace" ->
-                switchGrammar insertMode
-                mode := Replace
-                Console.ForegroundColor <- ConsoleColor.Red
-                printfn "  REPLACE"
-                speak "Replace mode"
-            | Some "search" | Some "command" -> SendKeys.SendWait("{ENTER}")
-            | Some prompt ->
-                if prompt.StartsWith "prompt: " then
             if res.Confidence > 0.85f then //85f then
+                    // Modes
+                    | Some "normal" ->
+                        if not (!mode = Normal) then // visual commands
+                            switchGrammar normalMode;   mode := Normal;         promptMode("NORMAL");           speak "Normal mode"
+                    | Some "insert" ->
+                        switchGrammar insertMode;       
+                        if ctagsGrammar.IsSome then reco.LoadGrammar(ctagsGrammar.Value)
+                        mode := Insert;                                         promptMode("INSERT");           speak "Insert mode"
+                    | Some "visual" ->      
+                        switchGrammar visualMode;       mode := VisualMode;     promptMode("VISUAL");           speak "Visual mode"
+                    | Some "replace" ->     
+                        switchGrammar insertMode;       
+                        if ctagsGrammar.IsSome then reco.LoadGrammar(ctagsGrammar.Value)
+                        mode := Replace;                                        promptMode("REPLACE");          speak "Replace mode"
+                    // Specially handled modes
+                    | Some "search" | Some "command" -> SendKeys.SendWait("{ENTER}")
+                    | Some prompt ->
+                        if prompt.StartsWith "prompt: " then
+                            let say = prompt.Substring(8)
+                            if say.EndsWith("%s") then
+                                let x = say.Substring(0, say.Length - 2)
+                                let y = res.Text.Substring(res.Text.LastIndexOf(' '))
+                                let s = sprintf "%s %s" x y
+                                speak s
+                            else speak say
+                        else failwith "Unknown mode."
+                    | None -> ()
                     
-                    let say = prompt.Substring(8)
-                    if say.EndsWith("%s") then
-                        let x = say.Substring(0, say.Length - 2)
-                        let y = res.Text.Substring(res.Text.LastIndexOf(' '))
-                        let s = sprintf "%s %s" x y
-                        speak s
-                    else speak say
-                else failwith "Unknown mode."
-            | None -> ()
             Console.ForegroundColor <- ConsoleColor.White
             printf "\n> "
         else
