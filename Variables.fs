@@ -552,6 +552,10 @@ let normalMode =
             Word ("make-room",                               ":tabnew",     Some "command")
             Word ("make-a-room",                             ":tabnew",     Some "command")
             //Word ("new-room",                             ":tabnew",     Some "command")
+            Word ("open-explorer",                           ":Explore",          Some "command")
+            Word ("open-explorer-vertically",                ":Vexplore",   Some "command")
+            Word ("open-explorer-horizontally",              ":Hexplore",   Some "command")
+            Word ("open-explorer-sidebar",                   ":Lexplore",   Some "command")
             Word ("open-window",                             ":sp",         Some "command")
             Word ("open-window-vertically",                  ":vsp",        Some "command")
     let globalReplace =
