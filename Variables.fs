@@ -497,6 +497,8 @@ let universalCommands =
         Word ("mute",                        "§vol:0",            None)
         Word ("unmute",                      "§vol:unmute",            None)
         Word ("volume-peak",                 "§vol:100",            None)
+        Word ("speak-faster",                "§speech:faster",            None)
+        Word ("speak-slower",                "§speech:slower",            None)
 
     ]
 
