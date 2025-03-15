@@ -223,49 +223,10 @@ let motion =
     Sequence [
         Optional ones // TODO: support full counts - why does GrammarBuilder freak?
         Choice [
-            Word ("back",                           "b",        None)
-            Word ("back-word",                      "b",        None)
-            Word ("big-back",                       "B",        None)
-            Word ("big-back-word",                  "B",        None)
-            Word ("next",                           "n",        None)
-            Word ("next-reversed",                  "N",        None)
-            Word ("previous",                       "N",        None)
-            Word ("column-zero",                    "0",        None)
-            Word ("column",                         "|",        None)
-            Word ("start-of-line",                  "^",        None)
-            Word ("end-of-line",                    "$",        None)
-            Word ("search-under-cursor",            "*",        None)
-            Word ("search-under-cursor-reversed",   "#",        None)
-            Word ("again",                          ";",        None)
-            Word ("again-reversed",                 ",",        None)
-            Word ("down-sentence",                  ")",        None)
-            Word ("up-sentence",                    "(",        None)
-            Word ("down-paragraph",                 "}",        None)
-            Word ("up-paragraph",                   "{",        None)
-            Word ("start-of-next-section",          "]]",       None)
-            Word ("start-of-previous-section",      "[[",       None)
-            Word ("end-of-next-section",            "][",       None)
-            Word ("end-of-previous-section",        "[]",       None)
-            Word ("matching",                       "%",        None)
-            Word ("down-line",                      "+",        None)
-            Word ("up-line",                        "-",        None)
-            Word ("first-character",                "_",        None)
-            Word ("cursor-home",                    "H",        None)
-            Word ("cursor-middle",                  "M",        None)
-            Word ("cursor-last",                    "L",        None)
-            Word ("start-of-document",              "gg",       None)
-            Word ("end-of-document",                "G",        None)
-            Word ("retrace-movements",              "<C-o>",    None)
-            Word ("retrace-movements-forward",      "<C-i>",    None)
-            Sequence [Word ("jump-to-mark",    "'", None); char]
-            Sequence [Word ("find",            "f", None); char]
-            Sequence [Word ("find-reversed",   "F", None); char]
-            Sequence [Word ("till",            "t", None); char]
-            Sequence [Word ("till-reversed",   "T", None); char]
-            Sequence [Word ("search",          "/", Some "search"); Dictation]
-            Sequence [Word ("search-reversed", "?", Some "search"); Dictation]
-            Choice [Word ("word", "w", None); Word ("words", "w", None)]
-            Choice [Word ("big-word", "W", None); Word ("big-words", "W", None)]]]
+            Word ("back",                         "b",   None)
+            Word ("back-word",                    "b",   None)
+            Word ("big-back",                     "B",   None)
+            Word ("big-back-word",                "B",   None)
             Word ("ending",                          "e",   None)
             Word ("big-ending",                      "E",   None)
             Word ("ending-reversed",                          "ge",   None)
@@ -286,10 +247,48 @@ let motion =
             Word ("east",                         "\{right\}",   None)
             Word ("next",                         "n",   None)
             Word ("next-reversed",                "N",   None)
+            Word ("previous",                     "N",   None)
+            Word ("column",                       "|",   None)
+            Word ("start-of-line",                "^",   None)
+            Word ("end-of-line",                  "$",   None)
+            Word ("search-under-cursor",          "*",   None)
+            Word ("search-under-cursor-reversed", "#",   None)
+            Word ("again",                        ";",   None)
+            Word ("again-reversed",               ",",   None)
+            Word ("down-sentence",                ")",   None)
+            Word ("up-sentence",                  "(",   None)
+            Word ("down-paragraph",               "}",   None)
+            Word ("up-paragraph",                 "{",   None)
+            Word ("start-of-next-section",        "]]",  None)
+            Word ("start-of-previous-section",    "[[",  None)
+            Word ("end-of-next-section",          "][",  None)
+            Word ("end-of-previous-section",      "[]",  None)
+            Word ("matching",                     "%",   None)
+            Word ("down-line",                    "+",   None)
+            Word ("up-line",                      "-",   None)
+            Word ("first-character",              "_",   None)
+            Word ("cursor-home",                  "H",   None)
+            Word ("cursor-middle",                "M",   None)
+            Word ("cursor-last",                  "L",   None)
+            Word ("start-of-document",            "gg",  None)
+            Word ("end-of-document",              "G",   None)
+            Word ("retrace-movements",            "\^o", None)
+            Word ("retrace-movements-forward",    "\^i", None)
             Word ("search-mode",                  "/",   Some "insert")
             Word ("search-mode-reversed",         "?",   Some "insert")
+            Sequence [Word ("jump-to-mark",       "'",   None); characters]
+            Sequence [Word ("find",               "f",   None); characters]
+            Sequence [Word ("find-reversed",      "F",   None); characters]
+            Sequence [Word ("till",               "t",   None); characters]
+            Sequence [Word ("till-reversed",      "T",   None); characters]
+            Sequence [Word ("search",             "/",   Some "search"); Dictation]
+            Sequence [Word ("search-reversed",    "?",   Some "search"); Dictation]
             Sequence [Word ("inside",             "i",   None); characters]
             Sequence [Word ("outside",            "o",   None); characters]
+            Choice [Word ("word",                 "w",   None); Word ("words",     "w", None)]
+            Choice [Word ("big-word",             "W",   None); Word ("big-words", "W", None)]
+        ]
+    ]
 
 let jump =
     Sequence [
