@@ -29,34 +29,39 @@ let ones =
         Word ("nine",  "9", None)
     ]
 
+let ones_teens =
+    Choice [
+        Word ("ten",      "10", None)
+        Word ("eleven",   "11", None)
+        Word ("twelve",   "12", None)
+        Word ("thirteen", "13", None)
+        Word ("fourteen", "14", None)
+        Word ("fifteen",  "15", None)
+        Word ("sixteen",  "16", None)
+        Word ("seventeen","17", None)
+        Word ("eighteen", "18", None)
+        Word ("nineteen", "19", None)
+    ]
+
+let ones_tens = 
+    Choice [
+        Word ("twenty",  "20", None)
+        Word ("thirty",  "30", None)
+        Word ("fourty",  "40", None)
+        Word ("fifty",   "50", None)
+        Word ("sixty",   "60", None)
+        Word ("seventy", "70", None)
+        Word ("eighty",  "80", None)
+        Word ("ninety",  "90", None)
+    ]
 
 let count =
-    let teens =
-        Choice [
-            ones
-            Word ("ten",      "10", None)
-            Word ("eleven",   "11", None)
-            Word ("twelve",   "12", None)
-            Word ("thirteen", "13", None)
-            Word ("fourteen", "14", None)
-            Word ("fifteen",  "15", None)
-            Word ("sixteen",  "16", None)
-            Word ("seventeen","17", None)
-            Word ("eighteen", "18", None)
-            Word ("nineteen", "19", None)]
-    let tens =
-        Choice [
-            Word ("twenty",  "20", None)
-            Word ("thirty",  "30", None)
-            Word ("fourty",  "40", None)
-            Word ("fifty",   "50", None)
-            Word ("sixty",   "60", None)
-            Word ("seventy", "70", None)
-            Word ("eighty",  "80", None)
-            Word ("ninety",  "90", None)]
-    let hundreds = Sequence [teens; Word ("hundred", "00", None)]
+    let teens     = Choice   [ones; ones_teens]
+    let tens      = Choice   [ones_tens]
+    let hundreds  = Sequence [teens; Word ("hundred", "00", None)]
     let thousands = Sequence [Choice [teens; hundreds]; Word ("thousand", "000", None)]
     Sequence [Optional thousands; Optional hundreds; Optional tens; Optional teens]
+
 
 let letter =
     Choice [
