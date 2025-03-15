@@ -128,6 +128,11 @@ let main argv =
                 if voiceRecognitionPaused || externalTranscriberInvoked then
                     promptCloseMuted()
                 else     
+                    let mutable alts = ""
+                    for alt in res.Alternates do
+                        alts <- alts + "\n  " + alt.Text 
+                        // Only doing if voice recog isn't paused, as it can log some speech. More important than this convenience.
+                    promptExtra("(Did you mean: "+alts+")")  
                 
                     promptCloseMuted()
                     speak "Say again?"
