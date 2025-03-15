@@ -114,6 +114,11 @@ let main argv =
                         | "print:help"                 ->
                             promptExtra("Say \"printout {insert/windows/visual/universal} mode\" to see all available actions.")
                             speak "To see all available actions, say \"printout, mode-name, mode\", with one of the modes insert, normal, windows, visual or universal. E.g. \"printout normal mode\"."
+                        | "vol:+"                      -> synth.Volume <- if (synth.Volume+volumeStep) <= 100 then (synth.Volume+volumeStep) else 100
+                        | "vol:-"                      -> synth.Volume <- if (synth.Volume-volumeStep) >= 0   then (synth.Volume-volumeStep) else 0
+                        | "vol:0"                      -> synth.Volume <- 0
+                        | "vol:100"                    -> synth.Volume <- 100
+                        | "vol:unmute"                 -> synth.Volume <- settings.DefaultFeedbackVolume
                         | _ -> 
                             promptInaction("not implemented")
                             promptExtra("Unrecognized command: "+wordValue) 
