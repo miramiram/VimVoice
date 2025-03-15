@@ -715,6 +715,14 @@ let insertMode =
 
 let windowsExclusiveCommands = 
     Choice [
+            Word ("reverse-tab",       "\SHIFT\{tab\}",                  None)  // Usage: navigate input boxes in reverse
+            Word ("tab-reverse",       "\SHIFT\{tab\}",                  None)
+            Word ("page-up",           "\{pgup\}",                       None)
+            Word ("page-down",         "\{pgdn\}",                       None)
+            Word ("up",                "\{up\}",                         None)  // Reason: hjkl isnt useful outside of vim, so replacing them with the arrow keys.
+            Word ("down",              "\{down\}",                       None)
+            Word ("left",              "\{left\}",                       None)
+            Word ("right",             "\{right\}",                      None)
         ] 
 
 let windowsMode =
