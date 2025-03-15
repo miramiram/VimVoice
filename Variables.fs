@@ -384,7 +384,10 @@ let textObject =
         ]
     ]
 
-let escape = Word ("escape", "<esc>", Some "normal")
+let escape = Choice [ 
+                    Word ("escape", "\{esc\}", Some "normal")
+                    // Word ("leave",  "\{esc\}", Some "normal") // Too easy to accidentally engage
+                    ]
 
 let surroundTarget =
     Choice [ // TODO: share with text objects?
