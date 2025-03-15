@@ -12,6 +12,9 @@ open Functions
 open Settings
 
 
+[<EntryPoint>]
+let main argv = 
+
     // Speech recognition setup:
     reco.SpeechRecognized.Add(fun a ->
         let res = a.Result
@@ -81,16 +84,23 @@ open Settings
             Console.ForegroundColor <- ConsoleColor.White
             printf "\n> ")
 
-Console.BackgroundColor <- ConsoleColor.Black
-Console.Clear()
+    Console.BackgroundColor <- ConsoleColor.Black
+    Console.ForegroundColor <- ConsoleColor.White
+    Console.Clear()
 
-switchGrammar normalMode
-Console.ForegroundColor <- ConsoleColor.White
-printfn "Welcome to VimSpeak"
-printf "\n\n> "
+    switchGrammar normalMode
 
-let rec eatKeys () = Console.ReadKey(true) |> ignore; eatKeys ()
-eatKeys ()
+    printfnColor(ConsoleColor.Green, "%s", "VimVoice")
+    promptCloseMuted()
 
-// TODO: Number parsing is broken (e.g. "nine thousand ninety nine" -> 90099)
-// TODO: Registers as a separate phrase? Why does GrammarBuilder barf?
+    let rec eatKeys () = Console.ReadKey(true) |> ignore; eatKeys ()
+
+    try
+        eatKeys ()
+    with 
+    | _ ->
+        Environment.Exit 1
+
+
+    // todo: Registers as a separate phrase? Why does GrammarBuilder barf?
+    0
