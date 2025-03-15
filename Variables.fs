@@ -657,6 +657,11 @@ let visualMode =
             command
             Word ("opposite",              "o", None)
             Word ("insert",                "I", Some "insert")
+            Word ("change-remaining-line", "C", Some "insert")
+            Word ("after-line",            "A",  Some "insert")
+            Word ("append-line",           "A",  Some "insert")
+            Word ("append",                "A",  Some "insert")
+            Sequence [Word ("replace",     "r", None); characters]
             commentary
         ]
     let surround =
