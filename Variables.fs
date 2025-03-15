@@ -686,6 +686,20 @@ let visualMode =
             surroundTarget]
     [visualCommand; motion; jump; textObject; escape; universalCommands; surround]
 
+let commandInsertionModeCommands =
+    Choice [
+        //Sequence [ // Note: This is intended for command-mode
+        //    Word ("write", "", None)
+        //    Choice [
+        //        Word ("word",               "\CTRLr\CTRLw", None)
+        //        Word ("big-word",           "\CTRLr\CTRLa", None)
+        //        Word ("line",               "\CTRLr\CTRLl", None)
+        //        Word ("filename",           "\CTRLr\CTRLf", None)
+        //        Word ("relative-filename",  "\CTRLr\CTRLp", None)
+        //    ]
+        //    Word ("under-cursor" , "", None)
+        //]
+    ]
 let programmingWords = Choice [
     Choice [ //Language: Universal
         Word ("function",  "function",  None)
