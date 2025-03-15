@@ -717,6 +717,12 @@ let windowsExclusiveCommands =
     Choice [
             Word ("reverse-tab",       "\SHIFT\{tab\}",                  None)  // Usage: navigate input boxes in reverse
             Word ("tab-reverse",       "\SHIFT\{tab\}",                  None)
+            Word ("select-word-left",  "\SHIFTWINCTRL\{left\}",          None)
+            Word ("select-word-right", "\SHIFTWINCTRL\{right\}",         None)
+            Word ("select-left",       "\SHIFT\{left\}",                 None)
+            Word ("select-right",      "\SHIFT\{right\}",                None)
+            Word ("select-up",         "\SHIFT\{up\}",                   None)
+            Word ("select-down",       "\SHIFT\{down\}",                 None)
             Word ("page-up",           "\{pgup\}",                       None)
             Word ("page-down",         "\{pgdn\}",                       None)
             Word ("up",                "\{up\}",                         None)  // Reason: hjkl isnt useful outside of vim, so replacing them with the arrow keys.
