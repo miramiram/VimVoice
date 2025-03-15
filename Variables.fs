@@ -471,7 +471,9 @@ let normalMode =
                 Word ("format-line",    "==",  None)
                 Word ("delete-line",    "dd",  None)
                 Word ("yank-line",      "Y",   None)
-                Word ("copy-line",      "Y",   None)]]
+                Word ("copy-line",      "Y",   None)
+            ]
+        ]
     let countedAction =
         Sequence [
             Optional count
@@ -691,6 +693,8 @@ let visualMode =
             ]
             surroundTarget]
     [visualCommand; motion; jump; textObject; escape; universalCommands; surround]
+
+
 
 let commandInsertionModeCommands =
     Choice [
