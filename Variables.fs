@@ -540,11 +540,11 @@ let normalMode =
     let selectTextObject = Sequence [Word ("select", "v", Some "visual"); textObject]
     let commandLine =
         Choice [
-            Word ("quit-without-saving", ":q!", Some "command")
             Sequence [Word ("edit",                          ":e",          Some "command"); Dictation]
             Word ("save",                                    ":w",          Some "command")
             Word ("quit",                                    ":q",          Some "command")
             Word ("save-and-quit",                           ":x",          Some "command")
+            Word ("forcefully-quit-without-saving-anything", ":q!",         Some "command")
             Word ("set-number",                              ":set nu",     Some "command")
             Word ("set-no-number",                           ":set nonu",   Some "command")
             Word ("set-highlight-search",                    ":set hls",    Some "command")
