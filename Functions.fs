@@ -82,17 +82,6 @@ let handleSpecialChars (keys : string) =
         .Replace("WINALT", "%")
         .Replace("WINSHIFT", "+")
 
-let insertKeys (keys : string) =  
-    if   keys.StartsWith "search " then "/" + keys.Substring 7
-    elif keys.StartsWith "search-reversed " then "?" + keys.Substring 16
-    else
-        // Check if the string exists in any of the characters, and return the character representation if so.
-        match findMatchingWord insertCommands keys with
-        | Match (Word (word, conversion, _)) -> conversion
-        | NoMatch  ->
-            match findMatchingWord ones keys with
-            | Match (Word (word, conversion, _)) -> conversion
-            | NoMatch  -> keys
 
 let reco = new SpeechRecognitionEngine()
 try
@@ -177,6 +166,17 @@ let rec findMatchingWord (grammar: GrammarAST<'a>) (input: string) : MatchResult
         |> Option.defaultValue NoMatch
     | Dictation -> NoMatch
     | _ -> NoMatch
+    let insertKeys (keys : string) =  
+        if   keys.StartsWith "search " then "/" + keys.Substring 7
+        elif keys.StartsWith "search-reversed " then "?" + keys.Substring 16
+        else
+            // Check if the string exists in any of the characters, and return the character representation if so.
+            match findMatchingWord insertCommands keys with
+            | Match (Word (word, conversion, _)) -> conversion
+            | NoMatch  ->
+                match findMatchingWord ones keys with
+                | Match (Word (word, conversion, _)) -> conversion
+                | NoMatch  -> keys
 let tests () =
     printfn "Running tests..."
     let test mode phrase expected =
