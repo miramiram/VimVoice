@@ -55,6 +55,12 @@ let recoToKeys (reco : RecognitionResult) =
 let handleSpecialChars (keys : string) = 
     keys.Replace("\{",      "LBR") // Specially interpreted strings           
         .Replace("\}",      "RBR") // Rationale: Making every character literal unless prepended with backslash, for predictability in UI and code, due to Windows interpreting many characters automatically.
+        .Replace("\CTRL",   "WINCTRL")
+        .Replace("\ALT",    "WINALT")
+        .Replace("\SHIFT",  "WINSHIFT")
+        .Replace("\^",      "WINCTRL")
+        .Replace("\+",      "WINSHIFT")
+        .Replace("\%",      "WINALT")
         // Replacing the remaining braces with a placeholder, before inserting windows-interpreted braces
         .Replace("{", "<left-brace>")  
         .Replace("}", "<right-brace>") 
@@ -72,6 +78,9 @@ let handleSpecialChars (keys : string) =
         // Replacing placeholders special characters with their windows equivalent
         .Replace("LBR", "{") // Used for writing windows dotnet key codes directly, the string it uses cant contain anything replaced by the prior replacements.
         .Replace("RBR", "}")
+        .Replace("WINCTRL", "^")
+        .Replace("WINALT", "%")
+        .Replace("WINSHIFT", "+")
 
 let insertKeys (keys : string) =
     if keys = "escape" then "<esc>" // HACK
