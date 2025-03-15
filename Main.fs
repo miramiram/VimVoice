@@ -121,15 +121,18 @@ let main argv =
                             else speak say
                         else failwith "Unknown mode."
                     | None -> ()
+                        
+                    promptClose()
+            else
+                promptInaction("unclear")
+                if voiceRecognitionPaused || externalTranscriberInvoked then
+                    promptCloseMuted()
+                else     
+                
+                    promptCloseMuted()
+                    speak "Say again?"
+    )
                     
-            Console.ForegroundColor <- ConsoleColor.White
-            printf "\n> "
-        else
-            Console.ForegroundColor <- ConsoleColor.Blue
-            printfn "INVALID\n"
-            speak "Say again?"
-            Console.ForegroundColor <- ConsoleColor.White
-            printf "\n> ")
 
     Console.BackgroundColor <- ConsoleColor.Black
     Console.ForegroundColor <- ConsoleColor.White
