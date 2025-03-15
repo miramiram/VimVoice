@@ -463,6 +463,14 @@ let universalCommands =
         Word ("use-insertion",               "",            Some "insert")
         Word ("colon-mode",                  ":",           Some "insert")
         Word ("commandments",                ":",           Some "insert")
+        Word ("stop-listening",              "§voicerecog:stop",            None)
+        Word ("stop-hearing",              "§voicerecog:stop",            None)
+        Word ("cease-listening",              "§voicerecog:stop",            None)
+        Word ("cease-hearing",              "§voicerecog:stop",            None)
+        Word ("deafen",                      "§voicerecog:stop",            None)
+        //Word ("undeafen",                    "§voicerecog:start",            None)  // Deprecated as it could sometimes be triggered by random noise. Accidentlaly undeafening a keystroke-sending program like this could have bad consequences, it needs to be reliable.
+        Word ("begin-listening",                    "§voicerecog:start",            None)
+        Word ("begin-hearing",                    "§voicerecog:start",            None)
         Word ("enter",                       "\{enter\}",   None)  // Reason: Used when entering files in vim normal mode
         Word ("return",                      "\{enter\}",   None)
         Word ("tab",                         "\{tab\}",   None)
