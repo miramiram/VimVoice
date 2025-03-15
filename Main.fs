@@ -52,14 +52,6 @@ let main argv =
         let res = a.Result
         if res <> null && res.Confidence > 0.f then
             Console.ForegroundColor <- ConsoleColor.White
-            printf "%s" res.Text
-            Console.ForegroundColor <- ConsoleColor.Gray
-            printfn " (%f)" res.Confidence
-            Console.ForegroundColor <- ConsoleColor.Yellow
-            printfn "  %s" send
-            if res.Text.StartsWith("yank ") then speak "yanked" // TODO: can't do as prompt because of overloaded value
-            elif res.Text.StartsWith("copy ") then speak "copied" // TODO: can't do as prompt because of overloaded value
-            match if res.Semantics.Value = null then None else Some (res.Semantics.Value :?> string) with
             if res.Confidence > 0.85f then //85f then
 
                 let wordValue = recoToKeys res
@@ -73,6 +65,12 @@ let main argv =
                     | _ ->
                         promptInaction("ignoring"); promptExtra("Say \"begin-hearing\" to unpause VimVoice."); promptCloseMuted()
                     
+                    
+                else
+
+                    // Announce recognized input
+                    promptRecognized(res) 
+                    else  // Not a meta-action
                         // Process resulting keystrokes 
                         let useInsertMode = !mode = Insert || (res.Semantics.Value <> null && res.Semantics.Value :?> string = "search")
                         let insertOrReco  = if useInsertMode then insertKeys res.Text else wordValue  //recoToKeys res 
@@ -87,6 +85,13 @@ let main argv =
                         else
                             promptKeystroke("") 
 
+
+                        // Voice responses
+                        if   res.Text.StartsWith("yank ") then speak "yanked" // Note: can't do as prompt due to overloaded value
+                        elif res.Text.StartsWith("copy ") then speak "copied" // Note: can't do as prompt due to overloaded value
+
+                    // Detect special cases
+                    match if res.Semantics.Value = null then None else Some (res.Semantics.Value :?> string) with
                     // Modes
                     | Some "normal" ->
                         if not (!mode = Normal) then // visual commands
