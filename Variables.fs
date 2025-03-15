@@ -284,6 +284,10 @@ let motion =
             Word ("south",                        "\{down\}",    None)
             Word ("west",                         "\{left\}",    None)
             Word ("east",                         "\{right\}",   None)
+            Word ("next",                         "n",   None)
+            Word ("next-reversed",                "N",   None)
+            Word ("search-mode",                  "/",   Some "insert")
+            Word ("search-mode-reversed",         "?",   Some "insert")
 
 let jump =
     Sequence [
