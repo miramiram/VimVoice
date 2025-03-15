@@ -3,14 +3,19 @@ open System.IO
 open System.Speech.Synthesis
 open System.Speech.Recognition
 open System.Windows.Forms
-let synth = new SpeechSynthesizer()
-synth.Rate <- 2
-synth.SelectVoiceByHints(VoiceGender.Female)
+open System.Text.Json
+open System.Threading.Tasks
 
-reco.SpeechRecognized.Add(fun a ->
-    let res = a.Result
-    if res <> null && res.Confidence > 0.f then
-        if res.Confidence > 0.85f then
+open Types
+open Variables
+open Functions
+open Settings
+
+
+    // Speech recognition setup:
+    reco.SpeechRecognized.Add(fun a ->
+        let res = a.Result
+        if res <> null && res.Confidence > 0.f then
             Console.ForegroundColor <- ConsoleColor.White
             printf "%s" res.Text
             Console.ForegroundColor <- ConsoleColor.Gray
@@ -56,6 +61,7 @@ reco.SpeechRecognized.Add(fun a ->
             | Some "search" | Some "command" -> SendKeys.SendWait("{ENTER}")
             | Some prompt ->
                 if prompt.StartsWith "prompt: " then
+            if res.Confidence > 0.85f then //85f then
                     
                     let say = prompt.Substring(8)
                     if say.EndsWith("%s") then
