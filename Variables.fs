@@ -15,6 +15,8 @@ with _ ->    failwith "No default audio device. Connect a microphone and make su
 
 let ctags = None 
 let synth = new SpeechSynthesizer()
+
+
 let ones =
     Choice [
         Word ("zero",  "0", None)
@@ -437,6 +439,10 @@ let commentary =
         Word ("comment",   @"\\", None)
         Word ("uncomment", @"\\", None)
 
+
+
+
+
 let normalMode =
     let countedCommand =
         Sequence [
@@ -454,52 +460,54 @@ let normalMode =
         Sequence [
             Optional count
             Choice [
-                Word ("after",                    "a",     Some "insert")
-                Word ("append",                   "a",     Some "insert")
-                Word ("after-line",               "A",     Some "insert")
-                Word ("append-line",              "A",     Some "insert")
-                Word ("insert",                   "i",     Some "insert")
-                Word ("insert-before-line",       "I",     Some "insert")
-                Word ("insert-column-zero",       "gI",    Some "insert")
-                Word ("open",                     "o",     Some "insert")
-                Word ("open-below",               "o",     Some "insert")
-                Word ("open-above",               "O",     Some "insert")
-                Word ("substitute",               "s",     Some "insert")
-                Word ("substitute-line",          "S",     Some "insert")
-                Word ("undo",                     "u",     None)
-                Word ("undo-line",                "U",     None)
-                Word ("redo",                     "<C-r>", None)
-                Word ("erase",                    "x",     None)
-                Word ("erase-reversed",           "X",     None)
-                Word ("erase-back",               "X",     None)
-                Word ("put",                      "p",     None)
-                Word ("paste",                    "p",     None)
-                Word ("put-before",               "P",     None)
-                Word ("paste-before",             "P",     None)
-                Word ("put-above",                "P",     None)
-                Word ("paste-above",              "P",     None)
-                Word ("repeat",                   ".",     None)
-                Word ("scroll-up",                "<C-y>", None)
-                Word ("scroll-down",              "<C-e>", None)
-                Word ("page-down",                "<C-f>", None)
-                Word ("page-up",                  "<C-b>", None)
-                Word ("half-page-down",           "<C-d>", None)
-                Word ("half-page-up",             "<C-u>", None)
-                Word ("indent-line",              ">>",    None)
-                Word ("unindent-line",            "<<",    None)
-                Word ("toggle-case",              "~",     None)
-                Word ("comment-line",             @"\\\",  None)
-                Word ("comment-lines",            @"\\\",  None)
-                Word ("uncomment-line",           @"\\\",  None)
-                Word ("uncomment-lines",          @"\\\",  None)
-                Word ("scroll-left",              "zh",    None)
-                Word ("scroll-right",             "zl",    None)
-                Word ("scroll-half-screen-left",  "zH",    None)
-                Word ("scroll-half-screen-right", "zL",    None)
-                Word ("scroll-start",             "zs",    None)
-                Word ("scroll-end",               "ze",    None)
-                Word ("play-again",               "@@",    None)
-                Sequence [Word ("play-macro", "@", None); char]]]
+                Word ("after",                    "a",    Some "insert")
+                Word ("append",                   "a",    Some "insert")
+                Word ("after-line",               "A",    Some "insert")
+                Word ("append-line",              "A",    Some "insert")
+                Word ("insert",                   "i",    Some "insert")
+                Word ("insert-line",              "I",    Some "insert")
+                Word ("insert-before-line",       "I",    Some "insert")
+                Word ("insert-column-zero",       "gI",   Some "insert")
+                Word ("open",                     "o",    Some "insert")
+                Word ("open-below",               "o",    Some "insert")
+                Word ("open-above",               "O",    Some "insert")
+                Word ("substitute",               "s",    Some "insert")
+                Word ("substitute-line",          "S",    Some "insert")
+                Word ("undo",                     "u",    None)
+                Word ("undo-line",                "U",    None)
+                Word ("redo",                     "\^r",  None)
+                Word ("erase",                    "x",    None)
+                Word ("erase-reversed",           "X",    None)
+                Word ("erase-back",               "X",    None)
+                Word ("put",                      "p",    None)
+                Word ("paste",                    "p",    None)
+                Word ("put-before",               "P",    None)
+                Word ("paste-before",             "P",    None)
+                Word ("put-above",                "P",    None)
+                Word ("paste-above",              "P",    None)
+                Word ("repeat",                   ".",    None)
+                Word ("scroll-up",                "\^y",  None)
+                Word ("scroll-down",              "\^e",  None)
+                Word ("page-down",                "\^f",  None)
+                Word ("page-up",                  "\^b",  None) 
+                Word ("half-page-down",           "\^d",  None)
+                Word ("half-page-up",             "\^u",  None)
+                Word ("indent-line",              ">>",   None)
+                Word ("unindent-line",            "<<",   None)
+                Word ("toggle-case",              "~",    None)
+                Word ("comment-line",             @"\\\", None)
+                Word ("comment-lines",            @"\\\", None)
+                Word ("uncomment-line",           @"\\\", None)
+                Word ("uncomment-lines",          @"\\\", None)
+                Word ("scroll-left",              "zh",   None)
+                Word ("scroll-right",             "zl",   None)
+                Word ("scroll-half-screen-left",  "zH",   None)
+                Word ("scroll-half-screen-right", "zL",   None)
+                Word ("scroll-start",             "zs",   None)
+                Word ("scroll-end",               "ze",   None)
+                Word ("play-again",               "@@",   None)
+                Sequence [Word ("play-macro", "@", None); characters]]]
+
     let nonCountedAction =
         Choice [
             Sequence [commentary; motion]
@@ -584,7 +592,7 @@ let normalMode =
         Choice [
             Sequence [
                 Choice [
-                    Choice [Word ("surround", "ys", None); Word ("you-surround", "ys", None)]
+                    Choice [Word ("surround",            "ys", None); Word ("you-surround",            "ys", None)]
                     Choice [Word ("surround-and-indent", "yS", None); Word ("you-surround-and-indent", "yS", None)]]
                 Choice [motion; textObject]
                 Word ("with", "", None)
@@ -602,11 +610,11 @@ let normalMode =
                 ]
                 surroundTarget]
             Sequence [
-                Word ("delete", "d", None)
+                Word ("delete",      "d", None)
                 Word ("surrounding", "s", None)
                 surroundTarget]
             Sequence [
-                Word ("change", "c", None)
+                Word ("change",      "c", None)
                 Word ("surrounding", "s", None)
                 surroundTarget
                 Word ("to", "", None)
@@ -618,8 +626,8 @@ let visualMode =
     let visualCommand =
         Choice [
             command
-            Word ("opposite", "o", None)
-            Word ("insert", "I", Some "insert")
+            Word ("opposite",              "o", None)
+            Word ("insert",                "I", Some "insert")
             commentary
         ]
     let surround =
