@@ -276,6 +276,14 @@ let motion =
             Word ("big-ending-reversed",                      "gE",   None)
             Word ("back-ending",                          "ge",   None)
             Word ("back-big-ending",                      "gE",   None)
+            Word ("h",                            "h",   None)
+            Word ("j",                            "j",   None)
+            Word ("k",                            "k",   None)
+            Word ("l",                            "l",   None)
+            Word ("north",                        "\{up\}",      None)
+            Word ("south",                        "\{down\}",    None)
+            Word ("west",                         "\{left\}",    None)
+            Word ("east",                         "\{right\}",   None)
 
 let jump =
     Sequence [
