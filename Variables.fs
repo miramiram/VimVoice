@@ -717,6 +717,8 @@ let windowsExclusiveCommands =
     Choice [
             Word ("reverse-tab",       "\SHIFT\{tab\}",                  None)  // Usage: navigate input boxes in reverse
             Word ("tab-reverse",       "\SHIFT\{tab\}",                  None)
+            Word ("next-room",             "\CTRL\{tab\}",         None)  
+            Word ("previous-room",         "\CTRL\SHIFT\{tab\}",         None)
             Word ("jump-word-left",    "\CTRL\{left\}",                  None)  // Reason: Removes lines of text in any vim
             Word ("jump-word-right",   "\CTRL\{right\}",                 None)  // Reason: --||--
             Word ("select-word-left",  "\SHIFTWINCTRL\{left\}",          None)
