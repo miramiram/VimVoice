@@ -718,6 +718,7 @@ let insertCommands =
         Word ("next-completion",     "\^n",     None)
         Word ("previous-completion", "\^p",     None)
         Word ("space",             " ",       None)
+        Word ("ace",               " ",       None)
         Word ("backspace",         "\{bs\}",  None)
         Word ("backspace-word",    "\^w",     None)
         Word ("fish",              "\{bs\}",  None)
