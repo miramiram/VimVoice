@@ -758,6 +758,7 @@ let insertMode =
 
 let windowsExclusiveCommands = 
     Choice [
+            Word ("open-windows-menu", "\CTRL\{esc\}", None)
             Word ("reverse-tab",       "\SHIFT\{tab\}",                  None)  // Usage: navigate input boxes in reverse
             Word ("tab-reverse",       "\SHIFT\{tab\}",                  None)
             Word ("next-room",             "\CTRL\{tab\}",         None)  
