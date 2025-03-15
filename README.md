@@ -4,14 +4,14 @@ This is a continuation of AshleyF's VimSpeak, with my own additions and expansio
 
 Notably, this version adds a lot of missing keys, has a new code structure, and also comes with:
 
-- non-vim keystrokes like alt-tab
 - window, tab and tmux/screen tab management
-- alt+tab, ctrl+tab and other windows keys
-- settings
-- the option to deafen and mute
+- non-VIM keystrokes like alt+tab, ctrl+tab and other OS keys (Access with "use-windows-mode")
+- settings (Say "open-settings")
+- the option to deafen and mute ("begin-hearing" "stop-hearing")
 - open an external assistant (configured in settings)
 - invocation of external transcribers (I recommend WhisperWriter).
 - and more additions that you'll need to peek into `Main.fs` and `Variables.fs` to gander at, or you can get a large printout with the 'printout-(normal/windows/visual/insert)-mode' command.
+    - For an overview of the fancy commands, go to `Variables.fs` and search for "let universalCommands"
 
 ## Building
 
