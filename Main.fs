@@ -95,6 +95,12 @@ let main argv =
                             promptMode("stopped listening"); promptExtra( "Say \"finish transcribing\" to resume.")
                             speak "Started transcribing, say finish transcribing to continue."
                             if wordValue = "§wizard:summon_with_scribe" then openAssistantProgram () |> Async.RunSynchronously
+                        | "repeatkeystroke"            ->
+                            // Note: Could add a Sequence option to put numbers before this command, and for-loop repeat it, but that feels too much, VIM more than covers that need.
+                            //       If its added in the future, make sure to only catch "\d\+ last", and not e.g. catch "\d\+ last another command with the ward last in it here".
+                            promptKeystroke(lastKeystroke)
+                            SendKeys.SendWait(lastKeystroke)
+                            promptExtra("Repeated VimVoice's last keystroke")
                         | _ -> 
                             promptInaction("not implemented")
                             promptExtra("Unrecognized command: "+wordValue) 
