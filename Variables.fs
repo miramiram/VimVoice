@@ -596,8 +596,11 @@ let normalMode =
                 Optional (Word ("confirm",     "c", None))
             ]
             Choice [
-                Word ("yes", "y", None)
-                Word ("no", "n", None)]]
+                Word ("choose-yes", "y", None)
+                Word ("choose-no", "n", None)
+                Word ("choose-quit", "q", None)
+            ]
+        ]
     let surround =
         Choice [
             Sequence [
