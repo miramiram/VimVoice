@@ -154,6 +154,28 @@ let promptCloseMuted() =
 let promptClose     () =
     if not settings.DontSayOk then speak "k"
     promptCloseMuted()
+// Result tyoe for findMatchingWord
+type MatchResult<'a> =
+    | Match of GrammarAST<'a>
+    | NoMatch
+
+// Recurse through GrammarAST object to see if a Word object with a first component matching the given string exists, return MatchResult.
+let rec findMatchingWord (grammar: GrammarAST<'a>) (input: string) : MatchResult<'a> =
+    match grammar with
+    | Word (word, _, _) as w -> 
+        if word = input then Match w                                // Return matching Word 
+        else NoMatch
+    | Optional innerGrammar -> findMatchingWord innerGrammar input  // Recurse if Optional
+    | Sequence grammarList ->                                       // Recurse each object in Sequence
+        grammarList 
+        |> List.tryPick (fun g -> match findMatchingWord g input with Match w -> Some (Match w) | NoMatch -> None)
+        |> Option.defaultValue NoMatch
+    | Choice grammarList ->                                         // Recurse each object in Choice
+        grammarList 
+        |> List.tryPick (fun g -> match findMatchingWord g input with Match w -> Some (Match w) | NoMatch -> None)
+        |> Option.defaultValue NoMatch
+    | Dictation -> NoMatch
+    | _ -> NoMatch
 let tests () =
     printfn "Running tests..."
     let test mode phrase expected =
