@@ -551,6 +551,9 @@ let normalMode =
             Word ("set-no-number",                           ":set nonu",   Some "command")
             Word ("set-highlight-search",                    ":set hls",    Some "command")
             Word ("set-no-highlight-search",                 ":set nohls",  Some "command")
+            Word ("set-paste",                 ":set paste",  Some "command")
+            Word ("set-no-paste",                 ":set nopaste",  Some "command")
+            Word ("set-filetype",                            ":setfiletype ",  Some "insert")
             Word ("make-room",                               ":tabnew",     Some "command")
             Word ("make-a-room",                             ":tabnew",     Some "command")
             //Word ("new-room",                             ":tabnew",     Some "command")
@@ -560,6 +563,9 @@ let normalMode =
             Word ("open-explorer-sidebar",                   ":Lexplore",   Some "command")
             Word ("open-window",                             ":sp",         Some "command")
             Word ("open-window-vertically",                  ":vsp",        Some "command")
+            Word ("enable-wrapping",                         ":set wrap",   Some "command")
+            Word ("disable-wrapping",                        ":set nowrap", Some "command")
+        ] 
     let globalReplace =
         Choice [
             Sequence [
