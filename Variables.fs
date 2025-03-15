@@ -584,7 +584,10 @@ let normalMode =
     let globalReplace =
         Choice [
             Sequence [
-                Word ("change-occurrences-of", ":%s/", Some "command")
+                Choice [
+                        Word ("change-all-occurrences-of", ":%s/", Some "command")
+                        Word ("change-occurrences-of", ":s/", Some "command")
+                ]
                 Dictation
                 Word ("into", "/", None) // "to" is used by surround.vim
                 Dictation
