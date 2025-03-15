@@ -227,10 +227,6 @@ let motion =
             Word ("back-word",                      "b",        None)
             Word ("big-back",                       "B",        None)
             Word ("big-back-word",                  "B",        None)
-            Word ("end",                            "e",        None)
-            Word ("big-end",                        "E",        None)
-            Word ("back-end",                       "ge",       None)
-            Word ("back-big-end",                   "gE",       None)
             Word ("left",                           "h",        None)
             Word ("down",                           "j",        None)
             Word ("up",                             "k",        None)
@@ -274,6 +270,12 @@ let motion =
             Sequence [Word ("search-reversed", "?", Some "search"); Dictation]
             Choice [Word ("word", "w", None); Word ("words", "w", None)]
             Choice [Word ("big-word", "W", None); Word ("big-words", "W", None)]]]
+            Word ("ending",                          "e",   None)
+            Word ("big-ending",                      "E",   None)
+            Word ("ending-reversed",                          "ge",   None)
+            Word ("big-ending-reversed",                      "gE",   None)
+            Word ("back-ending",                          "ge",   None)
+            Word ("back-big-ending",                      "gE",   None)
 
 let jump =
     Sequence [
