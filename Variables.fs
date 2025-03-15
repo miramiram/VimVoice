@@ -188,25 +188,36 @@ let symbol =
     ]
 
 let char = Choice [letter; symbol]
+let registers = 
+    Choice [ 
+        ones
+        letter
+        Word ("last-yank",    "0",  None)
+        Word ("pasting",    "0",  None)
+        Word ("last-delete",  "\"", None)
+        Word ("last-search",  "/",  None)
+        Word ("unnamed",      "\"", None)
+        Word ("black-hole",   "_",  None)
+        Word ("small-delete", "-",  None)
+        Word ("colon",        ":",  None)
+        Word ("dot",          ".",  None)
+        Word ("percent",      "%",  None)
+        Word ("pound",        "#",  None)
+        Word ("expression",   "=",  None)
+        Word ("star",         "*",  None)
+        Word ("plus",         "+",  None)
+        Word ("tilde",        "~",  None)
+    ]
 
 let register =
     Sequence [
-        Word ("register", "\"", Some "prompt: register %s")
+        Optional (Word ("use", "", None))
         Choice [
-            ones
-            letter
-            Word ("unnamed",      "\"", None)
-            Word ("black-hole",   "_",  None)
-            Word ("small-delete", "-",  None)
-            Word ("colon",        ":",  None)
-            Word ("dot",          ".",  None)
-            Word ("percent",      "%",  None)
-            Word ("pound",        "#",  None)
-            Word ("expression",   "=",  None)
-            Word ("star",         "*",  None)
-            Word ("plus",         "+",  None)
-            Word ("tilde",        "~",  None)
-            Word ("last-search",  "/",  None)]]
+            Word ("register", "\"", Some "prompt: register %s")
+            Word ("registry", "\"", Some "prompt: register %s")
+        ]
+        registers
+    ]
 
 let motion =
     Sequence [
