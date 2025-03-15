@@ -729,10 +729,47 @@ let insertCommands =
         Word ("fishing",           "\^w",     None)
         Word ("tab",               "\{tab\}", None)
         //Word ("enter",             "\{enter\}", None)
+        //Sequence [
+        //    Word ("write", "\CTRLr", None) 
+        //    registers
+        //    Word ("register", "", None)
+        //]
         characters
         commandInsertionModeCommands
         universalCommands
     ]
+
+
+
+//let commandInsertionMode = 
+//    [
+//        Choice [
+//            Word ("command-history", "\CTRLf", Some "normal")  // Shows command history as an editable buffer when inserted in command mode
+//            Sequence [ // Note: This is intended for command-mode
+//                Word ("write", "", None)
+//                Choice [
+//                    Word ("word",               "\CTRLr\CTRLw", None)
+//                    Word ("big-word",           "\CTRLr\CTRLa", None)
+//                    Word ("line",               "\CTRLr\CTRLl", None)
+//                    Word ("filename",           "\CTRLr\CTRLf", None)
+//                    Word ("relative-filename",  "\CTRLr\CTRLp", None)
+//                ]
+//                Word ("under-cursor" , "", None)
+//            ]
+//            Sequence [
+//                Word ("insert", "\CTRLr", None) 
+//                registers
+//                Word ("register", "", None)
+//            ]
+//        ]
+//    insertCommands
+//    programmingWords
+//    escape
+//    Dictation
+//    ]
+
+
+
 let programmingWords = Choice [
     Choice [ //Language: Universal
         Word ("function",  "function",  None)
@@ -752,6 +789,7 @@ let programmingWords = Choice [
         Word ("float",     "float",     None)
         ]
     ]
+
 let insertMode =
     [Dictation; programmingWords; insertCommands; escape]
         
@@ -759,6 +797,10 @@ let insertMode =
 let windowsExclusiveCommands = 
     Choice [
             Word ("open-windows-menu", "\CTRL\{esc\}", None)
+            // Word ("please-make-windows-switch-windows", "\ALT\{tab\}", None)
+            // Word ("please-make-windows-undo", "\CTRLz", None) // WARNING: Completely exits your vim process. If this happens, if on bash, quickly type "fg".
+            // Word ("please-make-windows-redo", "\CTRLr", None)
+
             Word ("reverse-tab",       "\SHIFT\{tab\}",                  None)  // Usage: navigate input boxes in reverse
             Word ("tab-reverse",       "\SHIFT\{tab\}",                  None)
             Word ("next-room",             "\CTRL\{tab\}",         None)  
