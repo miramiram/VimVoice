@@ -223,7 +223,10 @@ let register =
 
 let motion =
     Sequence [
-        Optional ones // TODO: support full counts - why does GrammarBuilder freak?
+        Optional ones_tens
+        Optional ones     
+        Optional ones_teens
+        // Optional count // Creates GrammarBuilder error
         Choice [
             Word ("back",                         "b",   None)
             Word ("back-word",                    "b",   None)
