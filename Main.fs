@@ -55,19 +55,24 @@ let main argv =
             printf "%s" res.Text
             Console.ForegroundColor <- ConsoleColor.Gray
             printfn " (%f)" res.Confidence
-            let semantics = res.Semantics.Value
-            let send =
-                if !mode = Insert || (semantics <> null && semantics :?> string = "search")
-                then insertKeys res.Text else recoToKeys res
-                //Console.ForegroundColor <- ConsoleColor.DarkYellow
-                //printfn "  %s" (fixKeys send)
-            SendKeys.SendWait(fixKeys send)
             Console.ForegroundColor <- ConsoleColor.Yellow
             printfn "  %s" send
             if res.Text.StartsWith("yank ") then speak "yanked" // TODO: can't do as prompt because of overloaded value
             elif res.Text.StartsWith("copy ") then speak "copied" // TODO: can't do as prompt because of overloaded value
             match if res.Semantics.Value = null then None else Some (res.Semantics.Value :?> string) with
             if res.Confidence > 0.85f then //85f then
+                        // Process resulting keystrokes 
+                        let useInsertMode = !mode = Insert || (res.Semantics.Value <> null && res.Semantics.Value :?> string = "search")
+                        let insertOrReco  = if useInsertMode then insertKeys res.Text else wordValue  //recoToKeys res 
+
+                        // Send and report key strokes
+                        if insertOrReco <> "" then  
+                            let send = handleSpecialChars queuedPrepend + handleSpecialChars insertOrReco
+                            SendKeys.SendWait(send)
+                            promptKeystroke  (send)
+                        else
+                            promptKeystroke("") 
+
                     // Modes
                     | Some "normal" ->
                         if not (!mode = Normal) then // visual commands
