@@ -688,6 +688,8 @@ let visualMode =
 
 let commandInsertionModeCommands =
     Choice [
+        Word ("command-history", "\CTRLf", Some "normal")  // Shows command history as an editable buffer when inserted in command mode
+        Word ("command-insertion", "\CTRLf", Some "normal")  
         //Sequence [ // Note: This is intended for command-mode
         //    Word ("write", "", None)
         //    Choice [
