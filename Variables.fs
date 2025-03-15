@@ -108,7 +108,9 @@ let letter =
         Word ("capital-w", "W", None)
         Word ("capital-x", "X", None)
         Word ("capital-y", "Y", None)
-        Word ("capital-z", "Z", None)]
+        Word ("capital-z", "Z", None)
+        Word ("space",     " ", None)
+   ]
 
 let symbol =
     Choice [
