@@ -522,6 +522,7 @@ let universalCommands =
         Word("finland",                     "§transcribe:stop",          None)
         Word("finish-finish",               "§transcribe:stop",          None)
         Word("banish",                      "§transcribe:stop",          None)
+        Word("open-settings",               "§open:settings",          None)
         Word("sneakily-open-transcriber",   settings.TranscriberCloseKeybinding, None)  // just in case they're needed,
         Word("sneakily-begin-transcribing", settings.TranscriberCloseKeybinding, None)  // just in case they're needed,
         Word("sneakily-begin-whisper",      settings.TranscriberCloseKeybinding, None)  // just in case they're needed,
