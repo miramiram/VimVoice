@@ -677,7 +677,7 @@ let visualMode =
                 ]
             ]
             surroundTarget]
-    [visualCommand; motion; jump; textObject; escape; surround]
+    [visualCommand; motion; jump; textObject; escape; universalCommands; surround]
 
 let insertMode =
     let insertCommands =
