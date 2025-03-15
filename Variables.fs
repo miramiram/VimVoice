@@ -551,6 +551,7 @@ let normalMode =
             Word ("hashtag",                     "#",          None) // Not using "pound" as the voice recognition can mistake that with "down" and vice-versa
             Word ("asterisk",                    "*",          None)
             ]
+    let selectMotion     = Sequence [Word ("select", "v", Some "visual"); Choice [motion; jump]]
     let selectTextObject = Sequence [Word ("select", "v", Some "visual"); textObject]
     let commandLine =
         Choice [
