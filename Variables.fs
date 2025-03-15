@@ -461,6 +461,8 @@ let universalCommands =
         Word ("use-insert-mode",             "",            Some "insert")
         Word (    "insert-mode",             "",            Some "insert")
         Word ("use-insertion",               "",            Some "insert")
+        Word ("colon-mode",                  ":",           Some "insert")
+        Word ("commandments",                ":",           Some "insert")
         Word ("arrow-up",                    "\{up\}",      None)         // Prepended with "keyboard" to be universal, not interfering, but also useful in vim
         Word ("arrow-down",                  "\{down\}",    None)
         Word ("arrow-left",                  "\{left\}",    None)
