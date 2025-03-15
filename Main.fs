@@ -101,6 +101,7 @@ let main argv =
                             promptKeystroke(lastKeystroke)
                             SendKeys.SendWait(lastKeystroke)
                             promptExtra("Repeated VimVoice's last keystroke")
+                        | "wizard:summon_scribelessly" -> openAssistantProgram () |> Async.RunSynchronously
                         | _ -> 
                             promptInaction("not implemented")
                             promptExtra("Unrecognized command: "+wordValue) 
