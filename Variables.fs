@@ -488,6 +488,9 @@ let universalCommands =
         Word ("keep-end",                    "\{end\}",     None)
         Word ("keyboard-capslock",           "\{capslock\}",     None)
         Word ("keep-capslock",               "\{capslock\}",    None)
+        Word ("next-application-room",             "\CTRL\{tab\}",         None)  
+        Word ("previous-application-room",         "\CTRL\SHIFT\{tab\}",         None)
+
         Word ("just-press-shift",            "\SHIFT",      None)  // Only usable with something like sticky keys
         Word ("just-press-control",          "\CTRL",       None)  // Only usable with something like sticky keys
         Word ("just-press-alternative",      "\ALT",        None)  // Only usable with something like sticky keys
