@@ -510,6 +510,16 @@ let universalCommands =
         Word ("help-me",                     "§print:help",            None)
         Word ("crumb",                       "§repeatkeystroke",            None) // Repeats last action
         Word ("crum",                        "§repeatkeystroke",            None) // Repeats last action
+        Word("begin-transcribing",          "§transcribe:start",          None)
+        Word("begin-whisper",               "§transcribe:start",          None)
+        Word("stop-transcribing",           "§transcribe:stop",          None)
+        Word("finish-transcribing",         "§transcribe:stop",          None)
+        Word("stop-whisper",                "§transcribe:stop",          None)
+        Word("end-whisper",                 "§transcribe:stop",          None)
+        Word("finish-whisper",              "§transcribe:stop",          None)
+        Word("finland",                     "§transcribe:stop",          None)
+        Word("finish-finish",               "§transcribe:stop",          None)
+        Word("banish",                      "§transcribe:stop",          None)
         Word("sneakily-open-transcriber",   settings.TranscriberCloseKeybinding, None)  // just in case they're needed,
         Word("sneakily-begin-transcribing", settings.TranscriberCloseKeybinding, None)  // just in case they're needed,
         Word("sneakily-begin-whisper",      settings.TranscriberCloseKeybinding, None)  // just in case they're needed,
