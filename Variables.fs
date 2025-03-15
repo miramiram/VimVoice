@@ -534,6 +534,9 @@ let normalMode =
             Word ("scroll-top-reset-cursor",     "z\{enter\}", None)
             Word ("scroll-middle-reset-cursor",  "z.",         None)
             Word ("scroll-botton-reset-cursor",  "z-",         None)
+            Word ("next-room",             "gt",         None)
+            Word ("previous-room",         "gT",         None)
+            Word ("cycle-windows",               "\CTRLww",    None)
     let selectTextObject = Sequence [Word ("select", "v", Some "visual"); textObject]
     let commandLine =
         Choice [
@@ -546,6 +549,11 @@ let normalMode =
             Word ("set-no-number", ":set nonu", Some "command")
             Word ("set-highlight-search", ":set hls", Some "command")
             Word ("set-no-highlight-search", ":set nohls", Some "command")]
+            Word ("make-room",                               ":tabnew",     Some "command")
+            Word ("make-a-room",                             ":tabnew",     Some "command")
+            //Word ("new-room",                             ":tabnew",     Some "command")
+            Word ("open-window",                             ":sp",         Some "command")
+            Word ("open-window-vertically",                  ":vsp",        Some "command")
     let globalReplace =
         Choice [
             Sequence [
