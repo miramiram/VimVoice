@@ -510,6 +510,13 @@ let universalCommands =
         Word ("help-me",                     "§print:help",            None)
         Word ("crumb",                       "§repeatkeystroke",            None) // Repeats last action
         Word ("crum",                        "§repeatkeystroke",            None) // Repeats last action
+        Word("sneakily-open-transcriber",   settings.TranscriberCloseKeybinding, None)  // just in case they're needed,
+        Word("sneakily-begin-transcribing", settings.TranscriberCloseKeybinding, None)  // just in case they're needed,
+        Word("sneakily-begin-whisper",      settings.TranscriberCloseKeybinding, None)  // just in case they're needed,
+        Word("sneakily-close-transcriber",  settings.TranscriberCloseKeybinding, None) // e.g. if the transcriber is in the wrong toggle state
+        Word("sneakily-stop-transcribing",  settings.TranscriberCloseKeybinding, None) // e.g. if the transcriber is in the wrong toggle state
+        Word("sneakily-end-transcribing",   settings.TranscriberCloseKeybinding, None) // e.g. if the transcriber is in the wrong toggle state
+        Word("sneakily-end-whisper",        settings.TranscriberCloseKeybinding, None) // e.g. if the transcriber is in the wrong toggle state
         Word ("next-building",             "\CTRLan",         None)  // Intended to be used with e.g. screen or termux (with custom keybinds)
         Word ("previous-building",         "\CTRLap",         None)
         Word ("make-a-building",         "\CTRLac",         None)
