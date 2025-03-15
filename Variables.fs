@@ -795,6 +795,15 @@ let windowsExclusiveCommands =
             Word ("down",              "\{down\}",                       None)
             Word ("left",              "\{left\}",                       None)
             Word ("right",             "\{right\}",                      None)
+            // Verbose section, to avoid making commonly spoken words commands (as this is an extended insert mode):
+            Word ("make-windows-undo",               "\CTRLz", None) // WARNING: Completely quits terminal processes, hence separate mode+foolproofing verbosity. If it happens on bash, quickly use the "fg" command.
+            Word ("make-windows-redo",               "\CTRLr", None)
+            Word ("make-windows-copy",               "\CTRLc", None)
+            Word ("make-windows-paste",              "\CTRLv", None)
+            Word ("make-windows-save",               "\CTRLs", None)
+            Word ("make-windows-open-a-file",        "\CTRLo", None)
+            Word ("make-windows-search",             "\CTRLf", None)
+            Word ("make-windows-search-and-replace", "\CTRLh", None)
         ] 
 
 let windowsMode =
