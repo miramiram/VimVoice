@@ -85,6 +85,10 @@ let main argv =
                     // Check for meta-action
                     if wordValue.StartsWith("§") then
                         match wordValue.[1..] with
+                        | "voicerecog:stop" ->
+                            voiceRecognitionPaused <- true
+                            promptMode("stopped listening"); promptExtra( "Say \"begin-hearing\" to resume.")
+                            speak "Paused voice recognition, say begin-hearing to continue."
                         | _ -> 
                             promptInaction("not implemented")
                             promptExtra("Unrecognized command: "+wordValue) 
