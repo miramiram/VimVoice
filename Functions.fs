@@ -160,6 +160,13 @@ let promptCloseMuted() =
 let promptClose     () =
     if not settings.DontSayOk then speak "k"
     promptCloseMuted()
+
+
+
+
+
+
+
 // Result tyoe for findMatchingWord
 type MatchResult<'a> =
     | Match of GrammarAST<'a>
@@ -169,19 +176,24 @@ type MatchResult<'a> =
 let rec findMatchingWord (grammar: GrammarAST<'a>) (input: string) : MatchResult<'a> =
     match grammar with
     | Word (word, _, _) as w -> 
-        if word = input then Match w                                // Return matching Word 
+        if word = input then Match w                                // Return the matching Word object
         else NoMatch
-    | Optional innerGrammar -> findMatchingWord innerGrammar input  // Recurse if Optional
-    | Sequence grammarList ->                                       // Recurse each object in Sequence
-        grammarList 
+    | Optional innerGrammar -> findMatchingWord innerGrammar input  // Recurse 
+    | Sequence grammarList ->                                       
+        grammarList // Check each element in the sequence
         |> List.tryPick (fun g -> match findMatchingWord g input with Match w -> Some (Match w) | NoMatch -> None)
         |> Option.defaultValue NoMatch
-    | Choice grammarList ->                                         // Recurse each object in Choice
-        grammarList 
+    | Choice grammarList ->                                         
+        grammarList // Check each choice
         |> List.tryPick (fun g -> match findMatchingWord g input with Match w -> Some (Match w) | NoMatch -> None)
         |> Option.defaultValue NoMatch
     | Dictation -> NoMatch
     | _ -> NoMatch
+
+
+
+
+
     let insertKeys (keys : string) =  
         if   keys.StartsWith "search " then "/" + keys.Substring 7
         elif keys.StartsWith "search-reversed " then "?" + keys.Substring 16
@@ -274,6 +286,4 @@ let tests () =
     test visualMode "comment" @"\\"
     test visualMode "uncomment" @"\\"
 //tests ()
-
-
 
