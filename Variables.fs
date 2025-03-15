@@ -288,6 +288,8 @@ let motion =
             Word ("next-reversed",                "N",   None)
             Word ("search-mode",                  "/",   Some "insert")
             Word ("search-mode-reversed",         "?",   Some "insert")
+            Sequence [Word ("inside",             "i",   None); characters]
+            Sequence [Word ("outside",            "o",   None); characters]
 
 let jump =
     Sequence [
