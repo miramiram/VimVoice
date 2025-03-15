@@ -83,11 +83,6 @@ let handleSpecialChars (keys : string) =
         .Replace("WINSHIFT", "+")
 
 
-let reco = new SpeechRecognitionEngine()
-try
-    reco.SetInputToDefaultAudioDevice()
-with _ -> failwith "No default audio device! Plug in a microphone, man."
-
 let grammarsToWordKeys gs =
     let rec grammarToWordKeys (map : Map<string,string>) = function
         | Word (w, ks, _) -> Map.add w ks map
@@ -96,7 +91,6 @@ let grammarsToWordKeys gs =
         | Dictation -> map
     List.fold grammarToWordKeys Map.empty gs
 
-let mode = ref Normal
 
 let switchGrammar grammar =
     reco.RecognizeAsyncCancel()
