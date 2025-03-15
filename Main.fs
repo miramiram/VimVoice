@@ -15,6 +15,32 @@ open Settings
 [<EntryPoint>]
 let main argv = 
 
+    let windowWidth  = 50
+    let windowHeight = 10
+    //let charWidth = 1.0
+    //let windowWidthPixels = (float)windowWidth * charWidth
+    //let posX = System.Windows.SystemParameters.PrimaryScreenWidth - windowWidthPixels
+    //let posY = 20
+    Console.Title <- "VimVoice coder"
+    Console.SetWindowSize (windowWidth, windowHeight)
+    //Console.SetWindowPosition ((int)posX, (int)posY)
+    //Console.Beep()
+    
+    // Synthesizer setup:
+    synth.Rate   <- settings.DefaultFeedbackSpeed
+    synth.Volume <- settings.DefaultFeedbackVolume
+    try 
+        synth.SelectVoice("Zira")
+    with 
+        | _ -> synth.SelectVoiceByHints(VoiceGender.Female)
+
+
+
+
+
+        
+    // Preparations for speech recognition setup:
+    speak "started"  // Spoken before voice recognition setup to avoid feedback loop for speaker users
     // Speech recognition setup:
     reco.SpeechRecognized.Add(fun a ->
         let res = a.Result
