@@ -547,6 +547,10 @@ let normalMode =
             Word ("next-room",             "gt",         None)
             Word ("previous-room",         "gT",         None)
             Word ("cycle-windows",               "\CTRLww",    None)
+            Word ("percent",                     "%",          None)
+            Word ("hashtag",                     "#",          None) // Not using "pound" as the voice recognition can mistake that with "down" and vice-versa
+            Word ("asterisk",                    "*",          None)
+            ]
     let selectTextObject = Sequence [Word ("select", "v", Some "visual"); textObject]
     let commandLine =
         Choice [
