@@ -592,9 +592,13 @@ let normalMode =
                         Word ("change-occurrences-of", ":s/", Some "command")
                 ]
                 Dictation
-                Word ("into", "/", None) // "to" is used by surround.vim
+                Word ("into",     "/",  None) // "to" is used by surround.vim
                 Dictation
-                Word ("globally", "/g", None) // TODO: optional
+                Word ("globally", "/g", None)  // TODO: Make optional by finding a way to insert "/" after the dictation, without (or with) anything spoken.
+                Optional (Word ("ignore-case", "i", None))
+                Optional (Word ("confirm",     "c", None))
+            ]
+                        
             Sequence [
                 Choice [
                         Word ("globally-substitute", ":%s/", Some "command")
