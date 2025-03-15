@@ -719,6 +719,7 @@ let insertCommands =
         Word ("previous-completion", "\^p",     None)
         Word ("space",             " ",       None)
         Word ("backspace",         "\{bs\}",  None)
+        Word ("backspace-word",    "\^w",     None)
         Word ("tab",               "\{tab\}", None)
         //Word ("enter",             "\{enter\}", None)
     ]
