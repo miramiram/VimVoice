@@ -41,6 +41,12 @@ let main argv =
         
     // Preparations for speech recognition setup:
     speak "started"  // Spoken before voice recognition setup to avoid feedback loop for speaker users
+    let mutable voiceRecognitionPaused = false
+    let mutable externalTranscriberInvoked = false
+    let mutable lastKeystroke = ""
+    let mutable queuedPrepend = ""
+    let volumeStep = 20
+
     // Speech recognition setup:
     reco.SpeechRecognized.Add(fun a ->
         let res = a.Result
