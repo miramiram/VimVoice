@@ -65,6 +65,15 @@ let main argv =
                     | _ ->
                         promptInaction("ignoring"); promptExtra("Say \"begin-hearing\" to unpause VimVoice."); promptCloseMuted()
                     
+                elif externalTranscriberInvoked then
+                    match wordValue with
+                    | "§transcribe:stop" ->  // Separated from voice recog, to ensure e.g. "finland" doesn't undeafen.
+                        closeTranscriber() |> ignore
+                        externalTranscriberInvoked <- false
+                        promptRecognized(res); promptKeystroke(wordValue); promptMode("started listening"); promptClose()
+                        speak "Stopped transcribing."
+                    | _ ->
+                        promptInaction("ignoring"); promptExtra("Say \"finland\" to finish transcribing and unpause VimVoice."); promptCloseMuted()
                     
                 else
 
