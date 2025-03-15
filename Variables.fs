@@ -189,7 +189,8 @@ let symbol =
         Word ("right-paren",            ")",  None)
     ]
 
-let char = Choice [letter; symbol]
+let characters = Choice [letter; symbol]
+
 let registers = 
     Choice [ 
         ones
@@ -728,6 +729,9 @@ let insertCommands =
         Word ("fishing",           "\^w",     None)
         Word ("tab",               "\{tab\}", None)
         //Word ("enter",             "\{enter\}", None)
+        characters
+        commandInsertionModeCommands
+        universalCommands
     ]
 let programmingWords = Choice [
     Choice [ //Language: Universal
