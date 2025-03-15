@@ -679,6 +679,25 @@ let visualMode =
             surroundTarget]
     [visualCommand; motion; jump; textObject; escape; universalCommands; surround]
 
+let programmingWords = Choice [
+    Choice [ //Language: Universal
+        Word ("function",  "function",  None)
+        Word ("command",   "command",   None)
+        Word ("def",       "def",       None)
+        Word ("var",       "var",       None)
+        Word ("let",       "let",       None)
+        Word ("class",     "class",     None)
+        Word ("lambda",    "lambda",    None)
+        Word ("not",       "not",       None)
+        Word ("raise",     "raise",     None)
+        Word ("Exception", "Exception", None)
+        Word ("list",      "list",      None)
+        Word ("dict",      "dict",      None)
+        Word ("tuple",     "tuple",     None)
+        Word ("int",       "int",       None)
+        Word ("float",     "float",     None)
+        ]
+    ]
 let insertMode =
     let insertCommands =
         Choice [
@@ -691,6 +710,5 @@ let insertMode =
             Word ("tab", "<tab>",               None)
             Word ("enter", "<enter>",           None)
             Word ("return", "<enter>",          None)]
-    [Dictation; insertCommands; escape]
-    
+    [Dictation; programmingWords; insertCommands; escape]
 
