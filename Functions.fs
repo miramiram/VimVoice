@@ -124,6 +124,36 @@ let ctagsGrammar =
         |> Some
     | None -> None
 
+
+
+
+
+let printfColor (color:ConsoleColor, printArg1:Printf.TextWriterFormat<_>, printArg2:_) =
+    let originalColor = Console.ForegroundColor
+    Console.ForegroundColor <- color
+    printf printArg1 printArg2
+    Console.ForegroundColor <- originalColor
+let printfnColor (color:ConsoleColor, printArg1:Printf.TextWriterFormat<_>, printArg2:_) =
+    printfColor (color, printArg1, printArg2)
+    printfn "%s" ""  
+
+let promptRecognized(result:RecognitionResult) =
+    printfColor     (ConsoleColor.White, "%s", result.Text)
+    printfnColor    (ConsoleColor.Gray, (Printf.TextWriterFormat<_>)" (%d%%)", ((int) (result.Confidence * (float32)100.00)))
+let promptKeystroke (text:string) =
+    printfnColor    (ConsoleColor.Yellow,  "  %s", text)
+let promptMode      (text:string) =
+    printfnColor    (ConsoleColor.Red,     "  %s", text.ToUpper())
+let promptInaction  (text:string) =
+    printfnColor    (ConsoleColor.Blue,    "%s", text.ToUpper())  // Not prepended with spaces as these appear inline
+let promptExtra     (text:string) =
+    printfnColor    (ConsoleColor.Gray,    "  %s", text)
+let promptCloseMuted() =
+    printfColor     (ConsoleColor.White,   "%s", "\n> ")
+    Console.ForegroundColor <- ConsoleColor.White  // Returning default fg to white
+let promptClose     () =
+    if not settings.DontSayOk then speak "k"
+    promptCloseMuted()
 let tests () =
     printfn "Running tests..."
     let test mode phrase expected =
