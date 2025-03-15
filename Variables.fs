@@ -26,7 +26,9 @@ let ones =
         Word ("six",   "6", None)
         Word ("seven", "7", None)
         Word ("eight", "8", None)
-        Word ("nine",  "9", None)]
+        Word ("nine",  "9", None)
+    ]
+
 
 let count =
     let teens =
@@ -177,7 +179,8 @@ let symbol =
         Word ("right-square-bracket",   "]",  None)
         Word ("right-bracket",          "]",  None)
         Word ("right-parenthesis",      ")",  None)
-        Word ("right-paren",            ")",  None)]
+        Word ("right-paren",            ")",  None)
+    ]
 
 let char = Choice [letter; symbol]
 
@@ -260,14 +263,17 @@ let jump =
     Sequence [
         Choice [
             Word ("jump-to-line-of",      "'", None)
-            Word ("jump-to-character-of", "`", None)]
+            Word ("jump-to-character-of", "`", None)
+        ]
         Choice [
             Word ("start-of-last-selection", "<",  None)
             Word ("end-of-last-selection",   ">",  None)
             Word ("latest-jump",             "'",  None)
             Word ("last-exit",               "\"", None)
             Word ("last-insert",             "^",  None)
-            Word ("last-change",             ".",  None)]]
+            Word ("last-change",             ".",  None)
+        ]
+    ]
 
 let line = 
     Sequence [
@@ -318,10 +324,13 @@ let textObject =
                 Word ("six",   "6", None)
                 Word ("seven", "7", None)
                 Word ("eight", "8", None)
-                Word ("nine",  "9", None)])
+                Word ("nine",  "9", None)
+            ]
+        )
         Choice [
             Word ("inner",  "i", None)
-            Word ("around", "a", None)]
+            Word ("around", "a", None)
+        ]
         Choice [
             Word ("word",            "w",  None)
             Word ("big-word",        "W",  None)
@@ -340,7 +349,9 @@ let textObject =
             Word ("backticks",       "`",  None)
             Word ("sentence",        "s",  None)
             Word ("paragraph",       "p",  None)
-            Word ("tag-block",       "t",  None)]]
+            Word ("tag-block",       "t",  None)
+        ]
+    ]
 
 let escape = Word ("escape", "<esc>", Some "normal")
 
@@ -509,7 +520,8 @@ let normalMode =
                 Dictation
                 Word ("globally", "/g", None) // TODO: optional
                 Optional (Word ("ignore-case", "i", None))
-                Optional (Word ("confirm", "c", None))]
+                Optional (Word ("confirm",     "c", None))
+            ]
             Choice [
                 Word ("yes", "y", None)
                 Word ("no", "n", None)]]
@@ -524,13 +536,15 @@ let normalMode =
                 surroundTarget]
             Sequence [
                 Choice [
-                    Word ("surround-line-with", "yss", None)
-                    Word ("you-surround-line-with", "yss", None)]
+                    Word ("surround-line-with",     "yss", None)
+                    Word ("you-surround-line-with", "yss", None)
+                ]
                 surroundTarget]
             Sequence [
                 Choice [
-                    Word ("surround-and-indent-line-with", "ySS", None)
-                    Word ("you-surround-and-indent-line-with", "ySS", None)]
+                    Word ("surround-and-indent-line-with",     "ySS", None)
+                    Word ("you-surround-and-indent-line-with", "ySS", None)
+                ]
                 surroundTarget]
             Sequence [
                 Word ("delete", "d", None)
@@ -541,8 +555,9 @@ let normalMode =
                 Word ("surrounding", "s", None)
                 surroundTarget
                 Word ("to", "", None)
-                surroundTarget]]
     [register; motion; jump; countedCommand; countedAction; nonCountedAction; selectMotion; selectTextObject; commandLine; line; lineNum; escape; globalReplace; surround]
+                surroundTarget]
+        ]
 
 let visualMode =
     let visualCommand =
@@ -550,16 +565,20 @@ let visualMode =
             command
             Word ("opposite", "o", None)
             Word ("insert", "I", Some "insert")
-            commentary]
+            commentary
+        ]
     let surround =
         Sequence [
             Choice [
                 Choice [
-                    Word ("surround-with", "S", None)
-                    Word ("you-surround-with", "S", None)]
+                    Word ("surround-with",     "S", None)
+                    Word ("you-surround-with", "S", None)
+                ]
                 Choice [
-                    Word ("surround-and-indent-with", "gS", None)
-                    Word ("you-surround-and-indent-with", "gS", None)]]
+                    Word ("surround-and-indent-with",     "gS", None)
+                    Word ("you-surround-and-indent-with", "gS", None)
+                ]
+            ]
             surroundTarget]
     [visualCommand; motion; jump; textObject; escape; surround]
 
