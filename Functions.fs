@@ -98,6 +98,19 @@ let grammarsToWordKeys gs =
 
 let mode = ref Normal
 
+let switchGrammar grammar =
+    reco.RecognizeAsyncCancel()
+    reco.UnloadAllGrammars()
+    List.iter (fun g -> reco.LoadGrammar(new Grammar(speechGrammar g))) grammar
+    modeKeys := grammarsToWordKeys grammar
+    reco.RecognizeAsync(RecognizeMode.Multiple)
+
+let speak (text : string) =
+    reco.RecognizeAsyncStop() // TODO: this is so speech doesn't get recognized!
+    synth.Speak text |> ignore
+    reco.RecognizeAsync(RecognizeMode.Multiple) // TODO: This causes about 1/2 sec. delay
+
+
 let ctagsGrammar =
     match ctags with
     | Some file ->
