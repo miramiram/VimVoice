@@ -529,6 +529,15 @@ let universalCommands =
         Word("sneakily-stop-transcribing",  settings.TranscriberCloseKeybinding, None) // e.g. if the transcriber is in the wrong toggle state
         Word("sneakily-end-transcribing",   settings.TranscriberCloseKeybinding, None) // e.g. if the transcriber is in the wrong toggle state
         Word("sneakily-end-whisper",        settings.TranscriberCloseKeybinding, None) // e.g. if the transcriber is in the wrong toggle state
+        Word("custom-key-one",     settings.CustomKey1,          None)
+        Word("custom-key-two",     settings.CustomKey2,          None)
+        Word("custom-key-three",   settings.CustomKey3,          None)
+        Word("custom-key-four",    settings.CustomKey4,          None)        
+        Word("custom-key-five",    settings.CustomKey5,          None)
+        Word("custom-key-six",     settings.CustomKey6,          None)
+        Word("custom-key-seven",   settings.CustomKey7,          None)
+        Word("custom-key-eight",   settings.CustomKey8,          None)
+        Word("custom-key-nine",    settings.CustomKey9,          None)
         Word ("next-building",             "\CTRLan",         None)  // Intended to be used with e.g. screen or termux (with custom keybinds)
         Word ("previous-building",         "\CTRLap",         None)
         Word ("make-a-building",         "\CTRLac",         None)
