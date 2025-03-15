@@ -13,6 +13,23 @@ Notably, this version adds a lot of missing keys, has a new code structure, and 
 - invocation of external transcribers (I recommend WhisperWriter).
 - and more additions that you'll need to peek into `Main.fs` and `Variables.fs` to gander at, or you can get a large printout with the 'printout-(normal/windows/visual/insert)-mode' command.
 
+## Building
+
+Building the program yourself is very straightforward:
+
+- Download Visual Studio 2022
+	- Make sure to select the Windows Development and .NET related packages in the installer
+- Clone/download this repository
+- Double-click the `VimVoice.sln` file and open it with Visual Studio 2022
+- Now look for the "Build" button on the very top of the screen
+	- To build an EXE
+		1. Make sure the box underneath the "Build" button (to the left of the green arrow) which reads "Release" or "Debug" is set to "Release"
+		2. Then click "Build" and then "Build VimVoice".
+        3. Open the VimVoice folder, and open the "bin" folder, then "Release" and "net472". This is the app folder, open VimVoice with `VimVoice.exe`.
+	- To debug
+		1. Make sure the box underneath the "Build" button (to the left of the green arrow) which reads "Release" or "Debug" is set to "Debug"
+		2. Click the green arrow to the right of this box, the one next to the text "VimVoice". 
+
 ## README from VimSpeak
 
 VimVoice lets you control Vim with your voice using speech recognition. For instance, you can say _“select three words”_ to type `v3w` or _“change surrounding brackets to parens”_ to type `cs])` or crazy things like _“change occurrences of ‘foo’ into ‘bar’, globally, ignore case, confirm”_ to type `:%s/foo/bar/gic`. Of course in insert mode you may dictate whatever you like. To learn the grammar, have a look at the unit tests and the code (“use the source, Luke”). It’s quite declarative and easy to follow.
