@@ -185,6 +185,38 @@ let rec findMatchingWord (grammar: GrammarAST<'a>) (input: string) : MatchResult
     | _ -> NoMatch
 
 
+// Recurse through GrammarAST object to print everything
+let rec printEntireGrammar (grammar: GrammarAST<'a>, indentCount: int) =
+    let pre = String.replicate indentCount "|"
+    printf "%s" pre
+    let titleColor = ConsoleColor.Green
+    match grammar with
+    | Word (word_text, word_keystrokes, word_mode) as w -> 
+        printfColor  (ConsoleColor.Gray,    "%s", " ")
+        printfColor  (ConsoleColor.Yellow,  "%s", word_keystrokes.PadRight(20, ' '))
+        printfColor  (ConsoleColor.Gray,    "%s", "<--| ")
+        printfnColor (ConsoleColor.White,   "%s", word_text) 
+    | Optional innerWord -> 
+        printfnColor (titleColor,    "%s", "\\ Optional:")
+        printEntireGrammar      (innerWord, indentCount + 1)
+    | Sequence sequence -> 
+        printfnColor (titleColor,    "%s", "\\ Sequence:")
+        for g in sequence do
+            printEntireGrammar (g,          indentCount + 1)
+    | Choice choice -> 
+        printfnColor (titleColor,    "%s", "\\ Choice:")
+        for g in choice do
+            printEntireGrammar (g,          indentCount + 1)
+
+    | Dictation ->
+        printfnColor (ConsoleColor.Yellow, "%s", " (Spoken dictation, like insert mode)")
+    | _ ->
+        printfnColor (ConsoleColor.Gray,   "%s", "(Unknown)")
+
+let rec printEntireGrammarList (grammarList: GrammarAST<'a> list) =
+    for grammar in grammarList do
+        printEntireGrammar (grammar, 0)
+
 
 
 
