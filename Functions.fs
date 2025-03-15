@@ -105,10 +105,13 @@ let switchGrammar grammar =
     modeKeys := grammarsToWordKeys grammar
     reco.RecognizeAsync(RecognizeMode.Multiple)
 
+
 let speak (text : string) =
-    reco.RecognizeAsyncStop() // TODO: this is so speech doesn't get recognized!
-    synth.Speak text |> ignore
-    reco.RecognizeAsync(RecognizeMode.Multiple) // TODO: This causes about 1/2 sec. delay
+    if settings.DontListenWhileGivingAudioFeedbackToUser then
+        reco.RecognizeAsyncStop() // this is so speech doesn't get recognized
+    synth.SpeakAsync text |> ignore
+    if settings.DontListenWhileGivingAudioFeedbackToUser then
+        reco.RecognizeAsync(RecognizeMode.Multiple) // This causes about 1/2 sec. delay
 
 
 let ctagsGrammar =
