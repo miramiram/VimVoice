@@ -121,6 +121,7 @@ let main argv =
                         | "vol:unmute"                 -> synth.Volume <- settings.DefaultFeedbackVolume
                         | "speech:faster"              -> synth.Rate <- if synth.Rate <  10 then synth.Rate + 1 else synth.Rate
                         | "speech:slower"              -> synth.Rate <- if synth.Rate > -10 then synth.Rate - 1 else synth.Rate
+                        | "open:settings"              -> openExternalProgramWithArgs settingsFilePath ""
                         | _ -> 
                             promptInaction("not implemented")
                             promptExtra("Unrecognized command: "+wordValue) 
