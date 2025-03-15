@@ -446,6 +446,11 @@ let commentary =
 // Commands that are accessible anywhere
 let universalCommands =  
     Choice [
+        Word ("consult-wizard",              "§wizard:summon_with_scribe",            Some "windows")
+        Word ("consult-the-wizard",          "§wizard:summon_with_scribe",            Some "windows")
+        Word ("summon-wizard",               "§wizard:summon_with_scribe",            Some "windows")
+        Word ("consult-assistant",           "§wizard:summon_with_scribe",            Some "windows")
+        Word ("sneakily-consult-assistant",   "§wizard:summon_scribelessly",          None)
 
     ]
 
