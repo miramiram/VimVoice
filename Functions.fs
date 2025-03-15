@@ -82,16 +82,17 @@ let handleSpecialChars (keys : string) =
         .Replace("WINALT", "%")
         .Replace("WINSHIFT", "+")
 
-let insertKeys (keys : string) =
-    if keys = "escape" then "<esc>" // HACK
-    elif keys = "undo" then "<C-o>u" // HACK
-    elif keys = "space" then "<space>" // HACK
-    elif keys = "backspace" then "<C-h>" // HACK
-    elif keys = "tab" then "<tab>" // HACK
-    elif keys = "enter" || keys = "return" then "<enter>" // HACK
-    elif keys.StartsWith "search " then "/" + keys.Substring 7
+let insertKeys (keys : string) =  
+    if   keys.StartsWith "search " then "/" + keys.Substring 7
     elif keys.StartsWith "search-reversed " then "?" + keys.Substring 16
-    else keys
+    else
+        // Check if the string exists in any of the characters, and return the character representation if so.
+        match findMatchingWord insertCommands keys with
+        | Match (Word (word, conversion, _)) -> conversion
+        | NoMatch  ->
+            match findMatchingWord ones keys with
+            | Match (Word (word, conversion, _)) -> conversion
+            | NoMatch  -> keys
 
 let reco = new SpeechRecognitionEngine()
 try
