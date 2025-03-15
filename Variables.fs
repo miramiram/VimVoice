@@ -491,6 +491,12 @@ let universalCommands =
         Word ("just-press-shift",            "\SHIFT",      None)  // Only usable with something like sticky keys
         Word ("just-press-control",          "\CTRL",       None)  // Only usable with something like sticky keys
         Word ("just-press-alternative",      "\ALT",        None)  // Only usable with something like sticky keys
+        Word ("volume-up",                   "§vol:+",            None)
+        Word ("volume-down",                 "§vol:-",            None)
+        Word ("volume-mute",                 "§vol:0",            None)
+        Word ("mute",                        "§vol:0",            None)
+        Word ("unmute",                      "§vol:unmute",            None)
+        Word ("volume-peak",                 "§vol:100",            None)
 
     ]
 
