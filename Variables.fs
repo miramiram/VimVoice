@@ -452,6 +452,13 @@ let universalCommands =
         Word ("summon-wizard",               "§wizard:summon_with_scribe",            Some "windows")
         Word ("consult-assistant",           "§wizard:summon_with_scribe",            Some "windows")
         Word ("sneakily-consult-assistant",   "§wizard:summon_scribelessly",          None)
+        Word ("use-windows-mode",            "",            Some "windows")
+        Word (    "windows-mode",            "",            Some "windows")
+        Word ("use-normal-mode",             "",            Some "normal")
+        Word (    "normal-mode",             "",            Some "normal")
+        Word ("use-insert-mode",             "",            Some "insert")
+        Word (    "insert-mode",             "",            Some "insert")
+        Word ("use-insertion",               "",            Some "insert")
 
     ]
 
