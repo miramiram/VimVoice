@@ -82,6 +82,8 @@ let main argv =
                         switchGrammar insertMode;       
                         if ctagsGrammar.IsSome then reco.LoadGrammar(ctagsGrammar.Value)
                         mode := Replace;                                        promptMode("REPLACE");          speak "Replace mode"
+                    | Some "windows" ->     
+                        switchGrammar windowsMode;      mode := Windows;        promptMode("MSWINDOWS MODE");   speak "Microsoft Windows mode"
                     // Specially handled modes
                     | Some "search" | Some "command" -> SendKeys.SendWait("{ENTER}")
                     | Some prompt ->
