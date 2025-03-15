@@ -244,6 +244,33 @@ let closeTranscriber () =
 let invokeTranscriber () =
     SendKeys.SendWait(handleSpecialChars settings.TranscriberOpenKeybinding)
 
+
+
+let openExternalProgramWithArgs (path: string) (args: string) =
+    try
+        let processStartInfo = ProcessStartInfo(path)
+        processStartInfo.UseShellExecute <- true
+        processStartInfo.Arguments <- args
+        let proc = Process.Start(processStartInfo)
+        printfn "Program started."
+    with
+    | ex -> printfn "Failed to start program: %s" ex.Message
+
+
+let openAssistantProgram () = async {
+    openExternalProgramWithArgs settings.AssistantPathOrUrl settings.AssistantArgs
+    // Wait for program to finish opening (It should be no problem to wait as speaking for windows/external transcription takes time)
+    do! Async.Sleep(settings.AssistantSecondsToWaitAfterOpeningToPressTabs * 1000)
+    // Press tab until inside the selection box
+    for i in 1 .. settings.AssistantNumberOfTimesToPressTabAfterOpeningToSelectTheTextInputBox do
+        SendKeys.SendWait("{tab}")
+
+}
+
+ 
+
+
+
 let tests () =
     printfn "Running tests..."
     let test mode phrase expected =
