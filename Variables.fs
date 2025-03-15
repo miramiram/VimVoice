@@ -503,36 +503,37 @@ let normalMode =
     let nonCountedAction =
         Choice [
             Sequence [commentary; motion]
-            Sequence [Word ("align-on", ":Tab/", Some "command"); char] // TODO: complete Tabular support
-            Sequence [Word ("mark",           "m",   Some "prompt: marked %s"); char]
-            Sequence [Word ("record-macro",   "q",   Some "prompt: recording %s"); char]
-            Sequence [Word ("replace",        "r",   None); char]
-            Word ("display-current-line-number", "<C-g>",     None)
-            Word ("delete-remaining-line", "D",     None)
-            Word ("change-remaining-line", "C",     Some "insert")
-            Word ("change-line",           "cc",    Some "insert")
-            Word ("duplicate-line",        "yyp",   None)
-            Word ("swap-characters",       "xp",    None)
-            Word ("swap-words",            "dwwP",  None)
-            Word ("swap-lines",            "ddp",   None)
-            Word ("stop-recording",        "q",     Some "prompt: stopped")
-            Word ("replace-mode",          "R",     Some "replace")
-            Word ("overwrite",             "R",     Some "replace")
-            Word ("visual",                "v",     Some "visual")
-            Word ("select",                "v",     Some "visual")
-            Word ("visual-line",           "V",     Some "visual")
-            Word ("select-line",           "V",     Some "visual")
-            Word ("visual-all",            "ggVG",  Some "visual")
-            Word ("select-all",            "ggVG",  Some "visual")
-            Word ("visual-block",          "<C-v>", Some "visual")
-            Word ("select-block",          "<C-v>", Some "visual")
-            Word ("scroll-top",            "zt",    None)
-            Word ("scroll-middle",         "zz",    None)
-            Word ("scroll-botton",         "zb",    None)
-            Word ("scroll-top-reset-cursor",    "z<enter>", None)
-            Word ("scroll-middle-reset-cursor", "z.",        None)
-            Word ("scroll-botton-reset-cursor", "z-",        None)] 
-    let selectMotion = Sequence [Word ("select", "v", Some "visual"); Choice [motion; jump]]
+            Sequence [Word ("align-on",     ":Tab/", Some "command"); characters] // TODO: complete Tabular support
+            Sequence [Word ("mark",         "m",     Some "prompt: marked %s"); characters]
+            Sequence [Word ("record-macro", "q",     Some "prompt: recording %s"); characters]
+            Sequence [Word ("replace",      "r",     None); characters]
+            Word ("display-current-line-number", "\^g",        None)
+            Word ("delete-remaining-line",       "D",          None)
+            Word ("change-remaining-line",       "C",          Some "insert")
+            Word ("change-line",                 "cc",         Some "insert")
+            Word ("duplicate-line",              "yyp",        None)
+            Word ("swap-characters",             "xp",         None)
+            Word ("swap-words",                  "dwwP",       None)
+            Word ("swap-lines",                  "ddp",        None)
+            Word ("stop-recording",              "q",          Some "prompt: stopped")
+            Word ("replace-mode",                "R",          Some "replace")
+            Word ("overwrite",                   "R",          Some "replace")
+            Word ("visual",                      "v",          Some "visual")
+            Word ("select",                      "v",          Some "visual")
+            Word ("visual-line",                 "V",          Some "visual")
+            Word ("select-line",                 "V",          Some "visual")
+            Word ("visual-all",                  "ggVG",       Some "visual")
+            Word ("select-all",                  "ggVG",       Some "visual")
+            Word ("visual-block",                "\^q",        Some "visual")
+            Word ("select-block",                "\^q",        Some "visual")
+            Word ("lost-selection",              "gv",         Some "visual")
+            Word ("last-selection",              "gv",         Some "visual")
+            Word ("scroll-top",                  "zt",         None)
+            Word ("scroll-middle",               "zz",         None)
+            Word ("scroll-botton",               "zb",         None)
+            Word ("scroll-top-reset-cursor",     "z\{enter\}", None)
+            Word ("scroll-middle-reset-cursor",  "z.",         None)
+            Word ("scroll-botton-reset-cursor",  "z-",         None)
     let selectTextObject = Sequence [Word ("select", "v", Some "visual"); textObject]
     let commandLine =
         Choice [
