@@ -441,6 +441,13 @@ let commentary =
     Choice [
         Word ("comment",   @"\\", None)
         Word ("uncomment", @"\\", None)
+    ]
+
+// Commands that are accessible anywhere
+let universalCommands =  
+    Choice [
+
+    ]
 
 
 
@@ -719,6 +726,7 @@ let windowsExclusiveCommands =
             Word ("tab-reverse",       "\SHIFT\{tab\}",                  None)
             Word ("next-room",             "\CTRL\{tab\}",         None)  
             Word ("previous-room",         "\CTRL\SHIFT\{tab\}",         None)
+            Word ("fishing",           "\CTRL\{bs\}",                    None)
             Word ("jump-word-left",    "\CTRL\{left\}",                  None)  // Reason: Removes lines of text in any vim
             Word ("jump-word-right",   "\CTRL\{right\}",                 None)  // Reason: --||--
             Word ("select-word-left",  "\SHIFTWINCTRL\{left\}",          None)
