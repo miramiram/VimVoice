@@ -231,6 +231,19 @@ let rec printEntireGrammarList (grammarList: GrammarAST<'a> list) =
                 match findMatchingWord ones keys with
                 | Match (Word (word, conversion, _)) -> conversion
                 | NoMatch  -> keys
+
+
+let closeTranscriber () =
+    SendKeys.SendWait(handleSpecialChars settings.TranscriberCloseKeybinding)
+    //async {
+    //    do! Async.Sleep(4*1000) 
+    //    SendKeys.SendWait("^{bs}^{bs}^{bs}")  // Removing the sentence that ends transcribing, e.g. "Stop transcribing. ".
+    //}
+
+
+let invokeTranscriber () =
+    SendKeys.SendWait(handleSpecialChars settings.TranscriberOpenKeybinding)
+
 let tests () =
     printfn "Running tests..."
     let test mode phrase expected =
