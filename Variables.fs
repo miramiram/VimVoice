@@ -510,6 +510,10 @@ let universalCommands =
         Word ("help-me",                     "§print:help",            None)
         Word ("crumb",                       "§repeatkeystroke",            None) // Repeats last action
         Word ("crum",                        "§repeatkeystroke",            None) // Repeats last action
+        Word ("next-building",             "\CTRLan",         None)  // Intended to be used with e.g. screen or termux (with custom keybinds)
+        Word ("previous-building",         "\CTRLap",         None)
+        Word ("make-a-building",         "\CTRLac",         None)
+        Word ("make-building",         "\CTRLac",         None)
 
     ]
 
