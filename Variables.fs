@@ -647,9 +647,9 @@ let normalMode =
                 Word ("surrounding", "s", None)
                 surroundTarget
                 Word ("to", "", None)
-    [register; motion; jump; countedCommand; countedAction; nonCountedAction; selectMotion; selectTextObject; commandLine; line; lineNum; escape; globalReplace; surround]
                 surroundTarget]
         ]
+    [register; motion; jump; countedCommand; countedAction; nonCountedAction; universalCommands; selectMotion; selectTextObject; commandLine; line; lineNum; escape; globalReplace; surround]
 
 let visualMode =
     let visualCommand =
