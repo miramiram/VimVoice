@@ -463,6 +463,9 @@ let universalCommands =
         Word ("use-insertion",               "",            Some "insert")
         Word ("colon-mode",                  ":",           Some "insert")
         Word ("commandments",                ":",           Some "insert")
+        Word ("enter",                       "\{enter\}",   None)  // Reason: Used when entering files in vim normal mode
+        Word ("return",                      "\{enter\}",   None)
+        Word ("tab",                         "\{tab\}",   None)
         Word ("arrow-up",                    "\{up\}",      None)         // Prepended with "keyboard" to be universal, not interfering, but also useful in vim
         Word ("arrow-down",                  "\{down\}",    None)
         Word ("arrow-left",                  "\{left\}",    None)
