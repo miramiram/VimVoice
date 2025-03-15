@@ -285,17 +285,23 @@ let lineNum =
 
 let command =
     Choice [
-        Word ("change",        "c", Some "insert")
-        Word ("delete",        "d", Some "normal")
-        Word ("indent",        ">", None)
-        Word ("unindent",      "<", None)
-        Word ("join",          "J", None)
-        Word ("format",        "=", None)
-        Word ("put",           "p", None)
-        Word ("paste",         "p", None)
-        Word ("undo",          "u", None)
-        Word ("yank",          "y", Some "normal")
-        Word ("copy",          "y", Some "normal")]
+        Word ("change",               "c",  Some "insert")
+        Word ("delete",               "d",  Some "normal")
+        Word ("indent",               ">",  None)
+        Word ("unindent",             "<",  None)
+        Word ("join",                 "J",  None)
+        Word ("format",               "=",  None)
+        Word ("put",                  "p",  None)
+        Word ("paste",                "p",  None)
+        Word ("paste-before",         "P",  None)
+        Word ("undo",                 "u",  None)
+        Word ("yank",                 "y",  Some "normal")
+        Word ("copy",                 "y",  Some "normal")
+        Word ("big-letters",          "gU", Some "normal")
+        Word ("capitalize-letters",   "gU", Some "normal")
+        Word ("small-letters",        "gu", Some "normal")
+        Word ("uncapitalize-letters", "gu", Some "normal")
+    ]
 
 let textObject =
     Sequence [
