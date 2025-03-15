@@ -711,4 +711,17 @@ let insertMode =
             Word ("enter", "<enter>",           None)
             Word ("return", "<enter>",          None)]
     [Dictation; programmingWords; insertCommands; escape]
+        
+
+let windowsExclusiveCommands = 
+    Choice [
+        ] 
+
+let windowsMode =
+        [Dictation; programmingWords; insertCommands; windowsExclusiveCommands; escape]
+
+
+
+
+
 
