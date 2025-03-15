@@ -754,7 +754,24 @@ let windowsExclusiveCommands =
             Word ("tab-reverse",       "\SHIFT\{tab\}",                  None)
             Word ("next-room",             "\CTRL\{tab\}",         None)  
             Word ("previous-room",         "\CTRL\SHIFT\{tab\}",         None)
+            Word ("two-fish",          String.replicate 2 "\{bs\}",      None)  // This specifically is great to have in windows, no need to overcomplicate.
+            Word ("three-fish",        String.replicate 3 "\{bs\}",      None)
+            Word ("four-fish",         String.replicate 4 "\{bs\}",      None)
+            Word ("five-fish",         String.replicate 5 "\{bs\}",      None)
+            Word ("six-fish",          String.replicate 6 "\{bs\}",      None)
+            Word ("seven-fish",        String.replicate 7 "\{bs\}",      None)
+            Word ("eight-fish",        String.replicate 8 "\{bs\}",      None)
+            Word ("nine-fish",         String.replicate 9 "\{bs\}",      None)
+            Word ("backspace-word",    "\CTRL\{bs\}",                    None)
             Word ("fishing",           "\CTRL\{bs\}",                    None)
+            Word ("two-fishing",       String.replicate 2 "\CTRL\{bs\}", None)  // This specifically is great to have in windows, no need to overcomplicate.
+            Word ("three-fishing",     String.replicate 3 "\CTRL\{bs\}", None)
+            Word ("four-fishing",      String.replicate 4 "\CTRL\{bs\}", None)
+            Word ("five-fishing",      String.replicate 5 "\CTRL\{bs\}", None)
+            Word ("six-fishing",       String.replicate 6 "\CTRL\{bs\}", None)
+            Word ("seven-fishing",     String.replicate 7 "\CTRL\{bs\}", None)
+            Word ("eight-fishing",     String.replicate 8 "\CTRL\{bs\}", None)
+            Word ("nine-fishing",      String.replicate 9 "\CTRL\{bs\}", None)
             Word ("jump-word-left",    "\CTRL\{left\}",                  None)  // Reason: Removes lines of text in any vim
             Word ("jump-word-right",   "\CTRL\{right\}",                 None)  // Reason: --||--
             Word ("select-word-left",  "\SHIFTWINCTRL\{left\}",          None)
