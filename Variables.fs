@@ -541,6 +541,8 @@ let normalMode =
     let commandLine =
         Choice [
             Sequence [Word ("edit",                          ":e",          Some "command"); Dictation]
+            Word ("forcefully-refresh",                      ":e",          Some "command")
+            Word ("edit-file",                               ":e ",          Some "insert")
             Word ("save",                                    ":w",          Some "command")
             Word ("quit",                                    ":q",          Some "command")
             Word ("save-and-quit",                           ":x",          Some "command")
