@@ -3,16 +3,6 @@ open System.IO
 open System.Speech.Synthesis
 open System.Speech.Recognition
 open System.Windows.Forms
-
-let ctags = None //Some @"C:\Dropbox\Temp\VimSpeak\tags"
-
-type GrammarAST<'a> =
-    | Word     of string * string * 'a option
-    | Optional of GrammarAST<'a>
-    | Sequence of GrammarAST<'a> list
-    | Choice   of GrammarAST<'a> list
-    | Dictation
-
 let rec speechGrammar = function
     | Word (say, _, Some value) ->
         let g = new GrammarBuilder(say)
@@ -32,7 +22,6 @@ let rec speechGrammar = function
         spelling.AppendDictation("spelling")
         new GrammarBuilder(new Choices(dict, spelling))
 
-type Mode = Normal | VisualMode | Replace | Insert
 
 let ones =
     Choice [
