@@ -38,7 +38,7 @@ The idea is to run this console app in the background where it will listen for s
 
 ---
 
-This is written in F# and makes use `System.Speech.Recognition`/`Synthesis` (.NET 3+). It also relies on `SendKeys(...)` (.NET 1.1+). I’ve only tested it under Win8, but it may work with Mono on other platforms.
+This is written in F# and makes use `System.Speech.Recognition`/`Synthesis` (.NET 3+). It also relies on `SendKeys(...)` (.NET 1.1+). Tested and working on Windows 11.
 
 ---
 
