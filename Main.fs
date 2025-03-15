@@ -89,6 +89,12 @@ let main argv =
                             voiceRecognitionPaused <- true
                             promptMode("stopped listening"); promptExtra( "Say \"begin-hearing\" to resume.")
                             speak "Paused voice recognition, say begin-hearing to continue."
+                        | "transcribe:start" | "wizard:summon_with_scribe" ->
+                            externalTranscriberInvoked <- true
+                            invokeTranscriber() |> ignore
+                            promptMode("stopped listening"); promptExtra( "Say \"finish transcribing\" to resume.")
+                            speak "Started transcribing, say finish transcribing to continue."
+                            if wordValue = "§wizard:summon_with_scribe" then openAssistantProgram () |> Async.RunSynchronously
                         | _ -> 
                             promptInaction("not implemented")
                             promptExtra("Unrecognized command: "+wordValue) 
