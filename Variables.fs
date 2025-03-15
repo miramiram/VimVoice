@@ -512,6 +512,13 @@ let universalCommands =
         Word ("help-me",                     "§print:help",            None)
         Word ("crumb",                       "§repeatkeystroke",            None) // Repeats last action
         Word ("crum",                        "§repeatkeystroke",            None) // Repeats last action
+        //Sequence [
+        //    Optional ones_tens
+        //    Optional ones     
+        //    Optional ones_teens
+        //    Word ("last", "", None) // Repeats last action
+        //    Word ("lost", "", None) // Alias for "last"
+        //]
         Word ("clear-chain", "§chain:clear", None)
         Sequence [
             Word ("chain", "", Some "insert")
