@@ -12,6 +12,45 @@ open Functions
 open Settings
 
 
+
+(*/*
+ -- Notes --
+    The quality of voice recognition changes from person to person based on their voice, and the system they use.
+    Changing existing words shouldn't be done without consideration, as what is easily recognized for someone's system is harder for others.
+    This voice-recognition subjectivity is also the reason for some of the unusual wordings, like "insertion" for switching to insert mode. 
+    If you want to change things, keep this in mind, and preferrably add aliases instead of replacements.
+
+    If you're okay with using Microsofts more accurate online text-to-speech service, Microsoft.Speech.Recognition might be a drop-in replacement.
+
+-- Settings and keys --
+   This program uses Microsoft's .NET to send keys, so refer to the documentation below to see how to spend special keys. Notably, special keys are sent with braces surrounding them, but due to parsing issues, this is a bit different in this program. If you want to write e.g. tab, you need to surround it with braces for .NET, and then additionally place \ in front of the braces, so that they are not interpreted as literal braces. E.g. "\{tab\}" will hit the tab button, while "tab" will press the keys T, A and B, individually.
+   For shift/alt/tab, use the special cases "\ALT", "\SHIFT", "\CTRL".
+   In the JSON settings file, backslashes aren't supported, so use the following substitutions:
+   - "\{"     -> "LBR"
+   - "\}"     -> "RBR"
+   - "\ALT"   -> "WINALT"
+   - "\SHIFT" -> "WINSHIFT"
+   - "\CTRL"  -> "WINCTRL"
+
+
+   
+-- References --
+    Keys:                   
+        https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=windowsdesktop-9.0
+    Vim setup for .fs files, to put in .vimrc, or just use the `set` commands:
+        |augroup fs_ft
+        |    au!
+        |    function! SetupFiletypeFt()
+        |        set tabstop=4 shiftwidth=4 expandtab
+        |        setfiletype cs
+        |    endfunction
+        |    autocmd BufNewFile,BufRead *.fs call SetupFiletypeFt()
+        |augroup END
+*/*)
+
+
+
+
 [<EntryPoint>]
 let main argv = 
 
