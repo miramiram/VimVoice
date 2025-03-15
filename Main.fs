@@ -102,6 +102,10 @@ let main argv =
                             SendKeys.SendWait(lastKeystroke)
                             promptExtra("Repeated VimVoice's last keystroke")
                         | "wizard:summon_scribelessly" -> openAssistantProgram () |> Async.RunSynchronously
+                        | "chain:clear"                -> queuedPrepend <- "";      promptExtra("Cleared the keystroke modifier queue.")
+                        | "chain:ctrl"                 -> queuedPrepend <- "\CTRL"; promptExtra("Queued CTRL for the next keystroke")
+                        | "chain:shift"                -> queuedPrepend <- "\SHIFT";promptExtra("Queued SHIFT for the next keystroke")
+                        | "chain:alt"                  -> queuedPrepend <- "\ALT";  promptExtra("Queued ALT for the next keystroke")
                         | _ -> 
                             promptInaction("not implemented")
                             promptExtra("Unrecognized command: "+wordValue) 
