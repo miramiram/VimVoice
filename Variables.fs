@@ -488,6 +488,7 @@ let universalCommands =
         Word ("keep-end",                    "\{end\}",     None)
         Word ("keyboard-capslock",           "\{capslock\}",     None)
         Word ("keep-capslock",               "\{capslock\}",    None)
+        Word ("make-windows-switch-windows", "\ALT\{tab\}", None) // In this mode as its not as dangerous as other windows commands
         Word ("next-application-room",             "\CTRL\{tab\}",         None)  
         Word ("previous-application-room",         "\CTRL\SHIFT\{tab\}",         None)
 
