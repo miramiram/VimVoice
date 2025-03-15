@@ -452,6 +452,8 @@ let universalCommands =
         Word ("summon-wizard",               "§wizard:summon_with_scribe",            Some "windows")
         Word ("consult-assistant",           "§wizard:summon_with_scribe",            Some "windows")
         Word ("sneakily-consult-assistant",   "§wizard:summon_scribelessly",          None)
+        Word ("keyboard-escape",             "\{esc\}",     None)  // Used to hit esc without entering normal mode, and can be inserted anywhere
+        Word ("keep-escape",                 "\{esc\}",     None)
         Word ("use-windows-mode",            "",            Some "windows")
         Word (    "windows-mode",            "",            Some "windows")
         Word ("use-normal-mode",             "",            Some "normal")
@@ -459,6 +461,23 @@ let universalCommands =
         Word ("use-insert-mode",             "",            Some "insert")
         Word (    "insert-mode",             "",            Some "insert")
         Word ("use-insertion",               "",            Some "insert")
+        Word ("arrow-up",                    "\{up\}",      None)         // Prepended with "keyboard" to be universal, not interfering, but also useful in vim
+        Word ("arrow-down",                  "\{down\}",    None)
+        Word ("arrow-left",                  "\{left\}",    None)
+        Word ("arrow-right",                 "\{right\}",   None)
+        Word ("keyboard-page-up",            "\{pgup\}",    None) // Prepended with "keyboard" to be universal, not interfering with vim binding
+        Word ("keyboard-page-down",          "\{pgdn\}",    None)
+        Word ("keyboard-home",               "\{home\}",    None)
+        Word ("keyboard-end",                "\{end\}",     None)
+        Word ("keep-page-up",                "\{pgup\}",    None)
+        Word ("keep-page-down",              "\{pgdn\}",    None)
+        Word ("keep-home",                   "\{home\}",    None)
+        Word ("keep-end",                    "\{end\}",     None)
+        Word ("keyboard-capslock",           "\{capslock\}",     None)
+        Word ("keep-capslock",               "\{capslock\}",    None)
+        Word ("just-press-shift",            "\SHIFT",      None)  // Only usable with something like sticky keys
+        Word ("just-press-control",          "\CTRL",       None)  // Only usable with something like sticky keys
+        Word ("just-press-alternative",      "\ALT",        None)  // Only usable with something like sticky keys
 
     ]
 
