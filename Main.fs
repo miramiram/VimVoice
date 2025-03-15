@@ -79,6 +79,8 @@ let main argv =
 
                     // Announce recognized input
                     promptRecognized(res) 
+                    if not settings.DontSayAction then speak res.Text
+                    
                     else  // Not a meta-action
                         // Process resulting keystrokes 
                         let useInsertMode = !mode = Insert || (res.Semantics.Value <> null && res.Semantics.Value :?> string = "search")
