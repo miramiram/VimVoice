@@ -61,6 +61,9 @@ let main argv =
             elif res.Text.StartsWith("copy ") then speak "copied" // TODO: can't do as prompt because of overloaded value
             match if res.Semantics.Value = null then None else Some (res.Semantics.Value :?> string) with
             if res.Confidence > 0.85f then //85f then
+
+                let wordValue = recoToKeys res
+
                         // Process resulting keystrokes 
                         let useInsertMode = !mode = Insert || (res.Semantics.Value <> null && res.Semantics.Value :?> string = "search")
                         let insertOrReco  = if useInsertMode then insertKeys res.Text else wordValue  //recoToKeys res 
@@ -68,6 +71,8 @@ let main argv =
                         // Send and report key strokes
                         if insertOrReco <> "" then  
                             let send = handleSpecialChars queuedPrepend + handleSpecialChars insertOrReco
+                            queuedPrepend <- "" 
+                            lastKeystroke <-  send
                             SendKeys.SendWait(send)
                             promptKeystroke  (send)
                         else
