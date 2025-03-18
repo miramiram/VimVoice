@@ -1,9 +1,12 @@
 # VimVoice
 
+**Program with your voice** by using voice commands to control Vim and Windows.
+
 This is a continuation of AshleyF's VimSpeak, with my own additions and expansions.
 
-Notably, this version adds a lot of missing keys, has a new code structure, and also comes with:
+Notably, this version: 
 
+- adds many missing keys and new functionality
 - window, tab and tmux/screen tab management
 - non-VIM keystrokes like alt+tab, ctrl+tab and other OS keys (Access with "use-windows-mode")
 - settings (Say "open-settings")
