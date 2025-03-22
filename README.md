@@ -1,4 +1,4 @@
-# VimVoice
+# VimVoice coder
 
 **Program with your voice** by using voice commands to control Vim and Windows.
 
